@@ -2,7 +2,7 @@
 An open standard for defining and designing AI Agents.
 # E-TIP12 基因组模型 (The E-TIP12 Genome Model)
 
-[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Project Status: Active](https://img.shields.io/badge/status-active-success.svg)](https://github.com/your-username/E-TIP12)
 [![Contributions: Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -146,4 +146,6 @@ E-TIP12不仅仅是一个分类标准，我们希望它能成长为一个充满�
 
 ## 📜 版权协议 (License)
 
-本项目采用 apache2.0 进行许可。
+本项目采用 **Apache 2.0 开源许可证 (Apache License 2.0)** 进行许可。
+
+你可以自由地使用、修改和分发本作品（或其衍生品），具体的权限和限制请参考许可证全文。
