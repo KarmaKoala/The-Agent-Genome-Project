@@ -146,6 +146,4 @@ E-TIP12不仅仅是一个分类标准，我们希望它能成长为一个充满�
 
 ## 📜 版权协议 (License)
 
-本项目采用 **知识共享署名-相同方式共享 4.0 国际许可协议 (Creative Commons Attribution-ShareAlike 4.0 International License)** 进行许可。
-
-这意味着你可以自由地分享和修改本作品，但必须给出适当的署名，并以相同的协议分享你的衍生作品。
+本项目采用 apache2.0 进行许可。
