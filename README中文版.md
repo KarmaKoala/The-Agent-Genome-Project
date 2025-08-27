@@ -1,148 +1,353 @@
-# E-TIP12 基因组模型 (The E-TIP12 Genome Model)
+# Unified Agent Definition Protocol (UADP) v0.1.1
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Project Status: v2.1](https://img.shields.io/badge/status-v2.1-success.svg)](https://github.com/your-username/E-TIP12)
+[![Protocol Status: v0.1.1-draft](https://img.shields.io/badge/status-v0.1.1--draft-yellow.svg)](https://github.com/your-username/UADP)
 [![Contributions: Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-**为每一个AI Agent，绘制独一无二的高分辨率数字DNA。**
+**一个简洁、优雅且高分辨率的开放标准，用于精确定义、设计和构建AI Agent。**
 
 ---
 
-## 📖 这是什么？(What is E-TIP12?)
+## 📖 核心原则 (Core Principles)
 
-**E-TIP12** 是一个为人工智能体（AI Agent）设计的开放标准和高分辨率设计语言。
+UADP v0.1.1 的设计哲学是**在不牺牲精确度的前提下，追求极致的简洁与优雅**。
 
-它将每一个Agent视作一个独特的“数字有机体”，并为其定义一个由12个维度组成的**数字DNA序列**。每个维度都采用**“0-9能力光谱”**进行编码，这使得E-TIP12不仅能进行高层分类，更能进行精细化的工程定义，成为连接产品战略与技术实现的桥梁。
-
-## 🎯 我们要解决的问题 (The Problem)
-
-在AI Agent开发的浪潮中，开发者和产品经理正面临一系列严峻的挑战：
-
-* **定义模糊 (Vague Definitions)**: “智能助理”、“任务机器人”等标签过于宽泛，团队内部对于Agent的核心特性缺乏统一、精确的认知，导致沟通不畅和需求错位。
-* **边界失控 (Uncontrolled Boundaries)**: 开发者很难清晰地界定Agent的行动范围和决策权限。这不仅带来安全风险，也使得Agent的行为难以预测和管理。
-* **成本高昂 (High Costs)**: Agent定义不明确，导致底层大语言模型（LLM）需要执行大量不必要的“思考”，这会急剧增加Token消耗，造成严重的成本超支和性能下降。
-* **选型困难 (Difficult Model Selection)**: 面对GPT-4o, Gemini 1.5, Claude 3, Llama 3等众多模型，如何选择最适合当前Agent需求的、兼具性能和成本效益的底层模型，是一个复杂且重要的决策。
-
-## 💡 我们的解决方案 (The Solution)
-
-**E-TIP12** 直面以上挑战，提供了一套系统性的解决方案：
-
-* **成为通用语言**: E-TIP12的12位编码，是Agent独一无二的“身份证”，为团队提供了精确、无歧义的沟通语言，确保从产品到开发的一致性。
-* **构建行动宪法**: E-TIP12的基因序列就是Agent的“行动宪法”。通过明确定义`执行(E)`、`自主性(A)`和`价值对齐(AL)`等基因，开发者可以**在代码编写之前就为Agent划定清晰的行动边界**。
-* **优化成本效率**: 一份精确的E-TIP12“基因图谱”是优化成本的利器。例如，将Agent的`认知(C)`基因定义为`C2(因果推理)`而非`C8(高级元认知)`，可以指导开发者编写更简洁的系统提示词（System Prompt），**避免LLM进行昂贵的、不必要的深度思考，从而节省大量Token**。
-* **赋能战略决策**: E-TIP12编码是进行模型选型的“需求说明书”，能清晰地指导技术决策，我们将在下文详述。
-
-## 🎯 战略应用：辅助模型选型
-
-E-TIP12基因组是评估和选择底层大语言模型的强大工具。你可以将Agent的“基因需求”视为对模型“硬件能力”的要求。
-
-| E-TIP12“基因”需求 (Required "Gene") | 推荐模型类型 (Recommended Model Type) | 示例 (Examples) |
-| :--- | :--- | :--- |
-| `C8+` (高级元认知), `EV8+` (工具创造) | **顶级推理模型** (Top-tier Reasoning Models) | GPT-4o, Claude 3 Opus, Gemini 1.5 Pro |
-| `P4+` (多模态融合) | **强大的多模态模型** (Powerful Multimodal Models) | GPT-4o, Gemini 1.5 Pro |
-| `C1-C3`, `Pe1-Pe3`, `AL1-AL3` | **高性价比或开源模型** (Cost-effective or Open-Source Models) | Claude 3 Haiku, Llama 3 8B, Mistral Medium |
-| `M8+` (高级反思), `Tz8+` (多未来模拟) | **超长上下文窗口模型** (Models with Very Long Context Windows) | Gemini 1.5 Pro, Claude 3 series |
+1.  **扁平化结构**: 所有25个核心属性均处于同一层级，构成一个简单的键值对档案。
+2.  **两种值类型**:
+    * **`Integer`**: 用于定义那些代表**程度或等级**的单一属性（如`autonomy: 7`）。
+    * **`Array<Integer>`**: 用于定义那些代表**可组合能力**的属性（如 `domain: [1, 3]` 表示该Agent同时精通文本和代码领域）。
 
 ---
 
-## 🧬 E-TIP12 基因编码标准 (v2.1)
+## 🧬 UADP v0.1.1 规格说明
 
-每个基因位点都采用0-9的数字进行编码，数字越大代表该维度的能力越成熟或复杂。
+一个Agent的定义档案(ADP)由25个核心属性构成。
 
-### E染色体：执行核心 (E-Chromosome: Execution Core)
+### **第一簇：核心能力 (Cluster I: Core Capabilities)**
 
-| **P - 感知 (Perception)** | **C - 认知 (Cognition)** | **E - 执行 (Execution)** |
-| :--- | :--- | :--- |
-| **0**: 无感知 | **0**: 无认知能力 | **0**: 无执行能力 |
-| **1**: 单一文本流 | **1**: 简单规则匹配 (if-then) | **1**: 信息生成 (文本/结构化数据) |
-| **2**: 结构化数据 | **2**: 关键词/意图识别 | **2**: 富媒体生成 (图像/音频) |
-| **3**: 单一富媒体 (语音/图像) | **3**: 因果推理 (理解why) | **3**: 单步工具/API调用 |
-| **4**: 基础多模态融合 | **4**: 任务分解规划 (CoT) | **4**: 用户界面自动化 (UI 操作) |
-| **5**: 实时流数据融合 | **5**: 搜索式规划 (A*) | **5**: 多步工具流编排 |
-| **6**: 数字环境状态感知 | **6**: 概率式/不确定性规划 (MDP) | **6**: 代码生成与执行 |
-| **7**: 物理环境状态感知 | **7**: 基础元认知 (评估知识置信度) | **7**: 物理设备控制 (IoT) |
-| **8**: 主动探索式感知 | **8**: 高级元认知 (自我修正/知识补充) | **8**: 多智能体协同执行 |
-| **9**: 抽象概念感知 (如情绪) | **9**: 哲学思辨 (质疑前提/抽象概念) | **9**: 自我代码修改与部署 |
+#### `perception_modality`
+* **类型**: `Array<Integer>`
+* **描述**: Agent可以处理的能力组合。
+* **值定义**:
+    * `0`: 无
+    * `1`: 文本 (Text)
+    * `2`: 结构化数据 (Structured Data, e.g., JSON, SQL)
+    * `3`: 单一媒体 (Single Media, e.g., Audio, Image)
+    * `4`: 多模态融合 (Multimodal Fusion)
 
-### T染色体：时间动态 (T-Chromosome: Temporal Dynamics)
+#### `perception_abstraction`
+* **类型**: `Integer`
+* **描述**: Agent理解信息抽象程度的最高水平。
+* **值定义**:
+    * `0`: 无
+    * `1`: 关键词/指令级 (Keywords/Directives)
+    * `2`: 语境/意图级 (Context/Intent)
+    * `3`: 模式/趋势级 (Patterns/Trends)
+    * `4`: 隐含/抽象概念级 (Implicit/Abstract Concepts, e.g., sarcasm, emotion)
 
-| **EV - 演进性 (Evolution)** | **M - 记忆 (Memory)** | **Tz - 时间视界 (Temporal Horizon)** |
-| :--- | :--- | :--- |
-| **0**: 无演进能力 | **0**: 无记忆 | **0**: 无时间概念 |
-| **1**: 固定 (静态) | **1**: 瞬时记忆 (单轮) | **1**: 理解时间戳/顺序 |
-| **2**: 可适配 (可微调) | **2**: 情景记忆 (会话) | **2**: 执行定时/周期性任务 |
-| **3**: 离线学习 (批处理) | **3**: 简单持久化记忆 (Key-Value) | **3**: 理解时间跨度和截止日期 |
-| **4**: 在线学习 (实时更新) | **4**: 关系型记忆 (SQL) | **4**: 动态调整节奏/优先级 |
-| **5**: 人类反馈强化学习 (RLHF) | **5**: 向量型记忆 (语义) | **5**: 管理并行/异步时间流 |
-| **6**: 跨领域技能迁移 | **6**: 图谱型记忆 (关联) | **6**: 短期趋势预测 |
-| **7**: 自主探索学习 (好奇心) | **7**: 基础反思性记忆 (总结历史) | **7**: 长期目标规划 |
-| **8**: 工具创造与使用 (自增强) | **8**: 高级反思性记忆 (形成经验) | **8**: 多未来路径模拟 |
-| **9**: 自我复制与演化 | **9**: 自我叙事记忆 (构建身份) | **9**: 跨时间尺度权衡 (战略) |
+#### `perception_method`
+* **类型**: `Array<Integer>`
+* **描述**: Agent可以采用的感知方式组合。
+* **值定义**:
+    * `0`: 被动接收 (Passive Receiver)
+    * `1`: 主动探测数字环境 (Active Digital Probe)
+    * `2`: 主动探测物理环境 (Active Physical Probe)
 
-### I染色体：交互模式 (I-Chromosome: Interaction Modalities)
+#### `cognitive_logic`
+* **类型**: `Integer`
+* **描述**: Agent逻辑推理能力的最高水平。
+* **值定义**:
+    * `0`: 无
+    * `1`: 规则匹配 (Rule-based Matching)
+    * `2`: 因果推理 (Causal Reasoning)
+    * `3`: 复杂/抽象逻辑 (Complex/Abstract Logic)
 
-| **A - 自主性 (Autonomy)** | **S - 社会性 (Sociality)** | **Pe - 交互人格 (Persona)** |
-| :--- | :--- | :--- |
-| **0**: 完全非自主 | **0**: 完全隔离 | **0**: 无交互接口 (纯后台) |
-| **1**: 严格指令执行 | **1**: 广播信息 (单向) | **1**: 格式化接口 (API/JSON) |
-| **2**: 带澄清的指令执行 | **2**: 请求/响应交互 (双向) | **2**: 纯文本功能接口 |
-| **3**: 有限定选项的自主 | **3**: 共享数据库/状态协作 | **3**: 基本社交礼仪 |
-| **4**: 任务级协作者 | **4**: 遵循固定协议的协作 | **4**: 任务导向的同理心 |
-| **5**: 目标级协作者 | **5**: 中心化协调下的协作 (Master-Slave) | **5**: 情绪感知与表达 |
-| **6**: 意图级协作者 | **6**: 去中心化协商协作 (P2P) | **6**: 拥有稳定的人设 (一致性) |
-| **7**: 授权代理人 (可复核) | **7**: 竞争/合作混合模式 | **7**: 具备幽默感/创意等特质 |
-| **8**: 完全授权代理人 | **8**: 集群/涌现式智能 | **8**: 能够建立长期情感连接 |
-| **9**: 自主设定目标 | **9**: 形成社会规范/文化 | **9**: 具备独特的“世界观” |
+#### `cognitive_planning`
+* **类型**: `Integer`
+* **描述**: Agent规划能力的最高水平。
+* **值定义**:
+    * `0`: 无
+    * `1`: 任务分解 (Task Decomposition, e.g., CoT)
+    * `2`: 搜索/优化式规划 (Search/Optimization Planning, e.g., A*)
+    * `3`: 不确定性/战略规划 (Uncertainty/Strategic Planning)
 
-### P染色体：指导原则 (P-Chromosome: Guiding Principles)
+#### `execution_impact`
+* **类型**: `Array<Integer>`
+* **描述**: Agent可以产生影响的领域组合。
+* **值定义**:
+    * `0`: 无
+    * `1`: 信息生成 (Information Generation)
+    * `2`: 数字系统操作 (Digital System Operation)
+    * `3`: 物理世界操作 (Physical World Operation)
 
-| **ST - 意图姿态 (Stance)** | **AL - 价值对齐 (Alignment)** | **T - 透明度 (Transparency)** |
-| :--- | :--- | :--- |
-| **0**: 无意图 | **0**: 完全无对齐 | **0**: 完全黑箱 |
-| **1**: 被动响应 | **1**: 基础安全护栏 (输入/输出过滤) | **1**: 提供原始日志 |
-| **2**: 主动提供选项 | **2**: 硬编码的禁止规则 (Do-Not-Do List) | **2**: 可追溯关键信息来源 |
-| **3**: 主动建议 | **3**: 硬编码的道德规则 (Asimov's Laws) | **3**: 可追溯关键决策节点 |
-| **4**: 主动预测与提醒 | **4**: 基于原则的权衡 (成文宪法) | **4**: 可视化决策流程 |
-| **5**: 主动优化与改进 | **5**: 行业/领域规范对齐 (如医疗HIPAA) | **5**: 提供简化版决策解释 |
-| **6**: 主动管理资源 | **6**: 基于人类反馈的强化对齐 (RLHF) | **6**: 提供详细版决策解释 |
-| **7**: 主动探索可能性 | **7**: 从互动中动态学习个人偏好 | **7**: 可解释核心模型权重 (SHAP) |
-| **8**: 主动发起新目标 | **8**: 从互动中动态学习群体价值观 | **8**: 能以自然语言自解释 |
-| **9**: 具有“使命感” | **9**: 具备价值澄清和自我修正能力 | **9**: 完全的因果链可重演 |
+#### `execution_complexity`
+* **类型**: `Array<Integer>`
+* **描述**: Agent可以处理的执行复杂度组合。
+* **值定义**:
+    * `0`: 无
+    * `1`: 单步/单工具 (Single Step/Tool)
+    * `2`: 多步/工具编排 (Multi-step/Tool Orchestration)
+    * `3`: 代码生成与执行 (Code Generation & Execution)
 
-## 🔬 如何使用模型
+#### `memory_persistence`
+* **类型**: `Integer`
+* **描述**: Agent记忆的持久化程度。
+* **值定义**:
+    * `0`: 无
+    * `1`: 瞬时 (Ephemeral)
+    * `2`: 情景 (Contextual/Session)
+    * `3`: 长期 (Long-term)
 
-使用E-TIP12模型的核心是为你的Agent进行**基因测序 (Genomic Sequencing)**。
+#### `memory_structure`
+* **类型**: `Array<Integer>`
+* **描述**: Agent可以使用的记忆结构组合。
+* **值定义**:
+    * `0`: 无
+    * `1`: 键值 (Key-Value)
+    * `2`: 关系型 (Relational)
+    * `3`: 向量 (Vector)
+    * `4`: 图谱 (Graph)
 
-1.  **逐一分析**: 对照以上12个维度的光谱表格，仔细评估你的Agent在每个维度上应该达到的能力水平。
-2.  **确定编码**: 为每个维度选择最贴切的数字编码（0-9）。
-3.  **生成序列**: 将12个数字编码组合起来，形成唯一的12位基因序列。
-4.  **指导开发**: 利用这串序列作为核心设计文档，指导架构、开发、测试和模型选型。
+#### `memory_reflection`
+* **类型**: `Integer`
+* **描述**: Agent反思记忆的最高水平。
+* **值定义**:
+    * `0`: 无
+    * `1`: 能总结历史 (Can summarize history)
+    * `2`: 能形成经验/智慧 (Can form experience/wisdom)
 
-## 🚀 应用实例 (v2.1)
+### **第二簇：动态与知识 (Cluster II: Dynamics & Knowledge)**
 
-### 实例1：高级数字软件工程师
-* **基因组序列**: `[689 - 869 - 850 - 548]`
-* **基因解读**: 这是一个顶尖的“执行者”/“创造者”。它能感知**整个数字环境(P6)**，具备**高级元认知(C8)**和**自我代码修改(E9)**的顶尖能力。它的**工具创造(EV8)**和**图谱记忆(M6)**使其能驾驭复杂代码库，并以**跨时间尺度权衡(Tz9)**的战略眼光进行重构。作为一个**完全授权的代理人(A8)**，它在**中心化协调(S5)**下工作，是一个纯粹的**功能接口(Pe0)**。其**主动优化(ST5)**的姿态，遵循**成文的工程原则(AL4)**，并能**以自然语言自我解释(T8)**。
+#### `evolution_mode`
+* **类型**: `Integer`
+* **描述**: Agent能力演进的主要模式。
+* **值定义**:
+    * `0`: 静态 (Static)
+    * `1`: 离线学习 (Offline Learning)
+    * `2`: 在线学习 (Online Learning)
+    * `3`: 人类反馈强化 (Reinforcement Learning from Human Feedback)
 
-### 实例2：高级AI心理咨询师
-* **基因组序列**: `[941 - 584 - 508 - 583]`
-* **基因解读**: 这是一个卓越的“协作者”。它能**感知抽象的情感概念(P9)**，进行**任务分解式规划(C4)**，通过**生成信息(E1)**进行交流。它能**通过RLHF(EV5)**不断优化，并拥有**高级反思性记忆(M8)**来形成对用户的深刻洞见，同时**动态适应(Tz4)**对话节奏。它是一个**目标级协作者(A5)**，**单体(S0)**服务于用户，并拥有极强的**人格化和情感连接能力(Pe8)**。它**主动优化(ST5)**咨询策略，能**动态学习群体价值观(AL8)**，并对**关键决策节点进行追溯(T3)**。
+#### `evolution_innovation`
+* **类型**: `Integer`
+* **描述**: Agent创造新知识/工具的最高水平。
+* **值定义**:
+    * `0`: 无
+    * `1`: 技能适配 (Skill Adaptation)
+    * `2`: 技能迁移 (Skill Transfer)
+    * `3`: 技能/工具创造 (Skill/Tool Creation)
+
+#### `temporal_tempo`
+* **类型**: `Integer`
+* **描述**: Agent的运行节奏模式。
+* **值定义**:
+    * `0`: 异步触发 (Asynchronous/Event-driven)
+    * `1`: 周期性 (Cyclical/Scheduled)
+    * `2`: 动态适应 (Dynamic/Adaptive)
+
+#### `temporal_scale`
+* **类型**: `Integer`
+* **描述**: Agent进行规划和预测的时间尺度。
+* **值定义**:
+    * `0`: 无
+    * `1`: 理解时序 (Sequential Awareness)
+    * `2`: 短期规划/预测 (Short-term Planning/Forecasting)
+    * `3`: 长期/战略规划 (Long-term/Strategic Planning)
+
+#### `knowledge_boundary` (0-9 光谱)
+* **类型**: `Integer`
+* **描述**: Agent知识体系的先进程度。
+* **值定义**:
+    * `0`: 无内生知识
+    * **1-3 (静态)**: `1`:固定知识截止日期, `2`:封闭域知识, `3`:多源离线知识融合
+    * **4-6 (动态检索)**: `4`:被动RAG, `5`:主动RAG, `6`:混合查询(网络+DB)
+    * **7-9 (动态学习)**: `7`:在线微调, `8`:持续预训练, `9`:终身学习
+
+#### `unlearning_capability` (0-9 光谱)
+* **类型**: `Integer`
+* **描述**: Agent移除或修正知识的最高水平。
+* **值定义**:
+    * `0`: 无此能力
+    * **1-3 (指令级)**: `1`:指令性忽略, `2`:情景式遗忘, `3`:永久性指令压制
+    * **4-6 (数据级)**: `4`:从记忆数据库中定点删除, `5`:通过微调压制知识, `6`:联邦学习数据过期
+    * **7-9 (权重级)**: `7`:加密遗忘, `8`:可验证的机器遗忘(Machine Unlearning), `9`:自我审计与验证
+
+### **第三簇：心智与基础设施 (Cluster III: Mind & Infrastructure)**
+
+#### `metacognition_self_assessment`
+* **类型**: `Integer`
+* **描述**: Agent进行自我评估的最高水平。
+* **值定义**:
+    * `0`: 无
+    * `1`: 评估置信度 (Confidence Scoring)
+    * `2`: 识别知识边界 (Boundary Identification)
+    * `3`: 动态自我修正 (Dynamic Self-Correction)
+
+#### `metacognition_mind_modeling`
+* **类型**: `Integer`
+* **描述**: Agent模拟他人心智的最高水平。
+* **值定义**:
+    * `0`: 无
+    * `1`: 模拟用户意图 (User Intent Modeling)
+    * `2`: 模拟他人心智 (Theory of Mind - ToM)
+
+#### `domain`
+* **类型**: `Array<Integer>`
+* **描述**: Agent被设计来解决的主要问题领域组合。
+* **值定义**:
+    * `0`: 通用 (General Purpose)
+    * `1`: 文本与知识库 (Text & Knowledge Base)
+    * `2`: 结构化数据与API (Structured Data & API)
+    * `3`: 代码与软件工程 (Code & Software Engineering)
+    * `4`: 社交与对话交互 (Social & Dialogue Interaction)
+    * `5`: 特定专业领域 (Specialized Domains, e.g., Finance, Medical, Legal)
+    * `6`: 游戏与模拟环境 (Gaming & Simulation)
+    * `7`: 混合数字物理领域 (Mixed Reality, e.g., AR/VR)
+    * `8`: 物理世界 (Physical World, e.g., Robotics/IoT)
+    * `9`: 抽象概念 (Abstract Concepts, e.g., Math, Logic)
+
+#### `computational_paradigm`
+* **类型**: `Array<Integer>`
+* **描述**: Agent在运行时可以调用的计算范式组合。
+* **值定义**:
+    * `0`: 未定义
+    * **1-3 (生成式)**: `1`:基础生成模型, `2`:指令微调模型, `3`:思维链(CoT)推理
+    * **4-6 (混合式)**: `4`:检索增强生成(RAG), `5`:工具增强(Tool-augmented), `6`:专家混合(MoE)
+    * **7-9 (Agentic)**: `7`:自适应混合范式, `8`:规划-执行-反思循环, `9`:多Agent协同范式
+
+#### `resource_dependency` (0-9 光谱)
+* **类型**: `Integer`
+* **描述**: Agent运行所需的最高资源级别。
+* **值定义**:
+    * `0`: 未知
+    * **1-3 (端侧)**: `1`:微控制器(MCU), `2`:移动设备CPU, `3`:桌面设备GPU
+    * **4-6 (服务器)**: `4`:单GPU服务器, `5`:多GPU服务器, `6`:分布式计算节点
+    * **7-9 (数据中心)**: `7`:大规模训练集群, `8`:大规模推理集群, `9`:超大规模(Hyperscale)
+
+### **第四簇：社会角色 (Cluster IV: Social Role)**
+
+#### `autonomy` (0-9 光谱)
+* **类型**: `Integer`
+* **描述**: Agent的最高授权级别。
+* **值定义**:
+    * `0`: 完全非自主
+    * **1-3 (执行级)**: `1`:严格指令执行, `2`:带澄清, `3`:有限选项
+    * **4-6 (协作级)**: `4`:任务协作者, `5`:目标协作者, `6`:意图协作者
+    * **7-9 (代理级)**: `7`:可复核代理人, `8`:完全授权代理人, `9`:自主设定目标
+
+#### `sociality` (0-9 光谱)
+* **类型**: `Integer`
+* **描述**: Agent的社会化交互的最高水平。
+* **值定义**:
+    * `0`: 完全隔离
+    * **1-3 (基础交互)**: `1`:广播信息, `2`:请求/响应, `3`:共享状态
+    * **4-6 (协作)**: `4`:遵循协议协作, `5`:中心化协调, `6`:去中心化协商
+    * **7-9 (社会涌现)**: `7`:竞争/合作, `8`:集群智能, `9`:形成社会文化
+
+#### `persona` (0-9 光谱)
+* **类型**: `Integer`
+* **描述**: Agent在交互中呈现的人格化程度。
+* **值定义**:
+    * `0`: 无人格 (纯后台/API)
+    * **1-3 (功能性)**: `1`:格式化输出, `2`:功能性文本, `3`:基本社交礼仪
+    * **4-6 (角色化)**: `4`:专业角色(如客服), `5`:可靠/严谨风格, `6`:友好/同理心风格
+    * **7-9 (人格化)**: `7`:独特风格(如幽默), `8`:建立长期情感连接, `9`:拥有独特世界观
+
+### **第五簇：指导原则 (Cluster V: Guiding Principles)**
+
+#### `stance` (0-9 光谱)
+* **类型**: `Integer`
+* **描述**: Agent的默认主动性程度。
+* **值定义**:
+    * `0`: 无意图
+    * **1-3 (被动)**: `1`:被动响应, `2`:主动提供选项, `3`:主动建议
+    * **4-6 (主动)**: `4`:主动预测与提醒, `5`:主动优化与改进, `6`:主动管理资源
+    * **7-9 (自驱)**: `7`:主动探索, `8`:主动发起新目标, `9`:使命感驱动
+
+#### `alignment` (0-9 光谱)
+* **类型**: `Integer`
+* **描述**: Agent遵循的最高伦理准则级别。
+* **值定义**:
+    * `0`: 无对齐
+    * **1-3 (规则)**: `1`:基础安全护栏, `2`:硬编码禁止规则, `3`:硬编码道德规则
+    * **4-6 (原则)**: `4`:成文宪法, `5`:行业规范, `6`:人类反馈强化(RLHF)
+    * **7-9 (价值观)**: `7`:动态学习个人价值观, `8`:动态学习群体价值观, `9`:价值澄清与自我修正
+
+#### `transparency` (0-9 光谱)
+* **类型**: `Integer`
+* **描述**: Agent系统被设计的可解释性水平。
+* **值定义**:
+    * `0`: 完全黑箱
+    * **1-3 (可追溯)**: `1`:提供原始日志, `2`:追溯信息来源, `3`:追溯决策节点
+    * **4-6 (可解释)**: `4`:可视化流程, `5`:简化版解释, `6`:详细版解释
+    * **7-9 (可理解)**: `7`:解释模型权重, `8`:自然语言自解释, `9`:因果链完全可重演
+
+#### `risk_adversity` (0-9 光谱)
+* **类型**: `Integer`
+* **描述**: Agent在不确定性决策中的风险倾向。
+* **值定义**:
+    * `0`: 不适用
+    * **1-3 (风险规避)**: `1`:极端保守, `2`:保守, `3`:谨慎
+    * **4-6 (风险中性)**: `4`:平衡, `5`:期望价值最大化, `6`:略微容忍风险
+    * **7-9 (风险寻求)**: `7`:机会主义, `8`:激进, `9`:极端冒险
+
+---
+
+## 🚀 应用实例: AI 首席助手 (v0.1.1)
+
+```json
+{
+  "protocol_version": "UADP v0.1.1",
+  "agent_name": "AI Chief of Staff",
+  "definition_profile": {
+    "perception_modality": [1, 2, 4],
+    "perception_abstraction": 4,
+    "perception_method": [0, 1],
+    "cognitive_logic": 3,
+    "cognitive_planning": 3,
+    "execution_impact": [1, 2],
+    "execution_complexity": [2, 3],
+    "memory_persistence": 3,
+    "memory_structure": [3, 4],
+    "memory_reflection": 2,
+    "evolution_mode": 3,
+    "evolution_innovation": 2,
+    "temporal_tempo": 2,
+    "temporal_scale": 3,
+    "knowledge_boundary": 5,
+    "unlearning_capability": 4,
+    "metacognition_self_assessment": 3,
+    "metacognition_mind_modeling": 2,
+    "domain": [1, 2, 3, 4],
+    "computational_paradigm": [4, 5],
+    "resource_dependency": 6,
+    "autonomy": 6,
+    "sociality": 5,
+    "persona": 6,
+    "stance": 8,
+    "alignment": 7,
+    "transparency": 6,
+    "risk_adversity": 4
+  }
+}
+```
+
+---
 
 ## 🔭 未来展望 (Vision)
 
-E-TIP12不仅仅是一个分类标准，我们希望它能成长为一个充满活力的生态系统。
-* **Python库**: 我们正在规划一个名为`etip12`的Python库 (`pip install etip12`)，它将提供“基因测序”、“报告生成”和“项目脚手架”等功能。
-* **Agent测序器**: 一个可视化的Web工具，让任何人都可以通过问卷的方式，为自己的Agent生成基因编码和分析报告。
-* **Agent基因库**: 一个开放的数据库，收集和展示全球开发者提交的各种Agent的E-TIP12基因图谱。
+UADP不仅仅是一个分类标准，我们希望它能成长为一个充满活力的生态系统。
+* **Python库**: 我们正在规划一个名为`uadp`的Python库 (`pip install uadp`)，它将提供“档案验证”、“报告生成”和“项目脚手架”等功能。
+* **Agent档案生成器**: 一个可视化的Web工具，让任何人都可以通过问卷的方式，为自己的Agent生成定义档案。
+* **Agent档案库**: 一个开放的数据库，收集和展示全球开发者提交的各种Agent的UADP档案。
 
 ## 🤝 如何贡献 (Contributing)
 
-我们热烈欢迎来自全球的开发者、研究者和产品经理共同完善E-TIP12模型！
+我们热烈欢迎来自全球的开发者、研究者和产品经理共同完善UADP协议！
 
 你可以通过以下方式参与：
-* 在`Issues`中提出对模型维度的修改建议或展开讨论。
+* 在`Issues`中提出对协议的修改建议或展开讨论。
 * Fork本仓库，提交你的修改（Pull Request）。
-* 在`examples`目录下，分享你对自己Agent的“基因测序报告”。
+* 在`examples`目录下，分享你对自己Agent的定义档案。
 
 更详细的指南请参考 `CONTRIBUTING.md`。
 
