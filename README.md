@@ -511,21 +511,7 @@ The following are example Agent Definition Profiles (ADPs) for a variety of AI a
   }
 }
 ```
-### AI Sports Commentator
->
-```json
 
-```
-### AI Sports Commentator
->
-```json
-
-```
-### AI Sports Commentator
->
-```json
-
-```
 
 ## 🔧 How to Use AGP
 AGP provides value for various roles within a team:
