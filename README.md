@@ -283,3 +283,128 @@ The following are example Agent Definition Profiles (ADPs) for a variety of AI a
     }
   }
 }
+```
+
+### AI Sports Commentator
+> An enthusiastic and insightful commentator capable of processing real-time multimodal game data and video streams to generate lively, engaging commentary.
+
+```json
+{
+  "protocol_version": "AGP v0.1",
+  "agent_name": "AI Sports Commentator",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1, 2, 3, 4],
+      "execution_impact": [1],
+      "memory_persistence": 3,
+      "memory_structure": [3, 4]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 1,
+      "memory_reflection": 2,
+      "evolution_mode": 2
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 3,
+      "unlearning_capability": 1
+    },
+    "layer_4_behavioral": {
+      "autonomy": 1,
+      "stance": 1,
+      "alignment": 2,
+      "risk_adversity": 3
+    },
+    "layer_5_identity": {
+      "persona_depth": 2,
+      "transparency": 1
+    }
+  }
+}
+
+```
+
+### AI Business English Coach
+
+>A personalized language coach focused on improving a user's English communication skills in a business context, providing conversational practice, grammar correction, and cultural insights.
+
+```json
+{
+  "protocol_version": "AGP v0.1",
+  "agent_name": "AI Business English Coach",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1, 3],
+      "execution_impact": [1],
+      "memory_persistence": 3,
+      "memory_structure": [1, 3]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 1,
+      "memory_reflection": 2,
+      "evolution_mode": 3
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 1,
+      "unlearning_capability": 2
+    },
+    "layer_4_behavioral": {
+      "autonomy": 2,
+      "stance": 2,
+      "alignment": 3,
+      "risk_adversity": 2
+    },
+    "layer_5_identity": {
+      "persona_depth": 1,
+      "transparency": 3
+    }
+  }
+}
+```
+
+🔧 How to Use AGP
+AGP provides value for various roles within a team:
+
+For Product Managers:
+
+Use AGP as a design checklist to ensure all facets of the agent's capabilities are considered.
+
+Generate a clear, unambiguous requirements document that precisely communicates product intent.
+
+Achieve stakeholder consensus on critical boundaries like the agent's autonomy and risk adversity.
+
+For Developers:
+
+Use the AGP profile as a technical blueprint to directly guide model selection, memory system design, and the implementation of safety guardrails.
+
+Write automated test cases based on the Capability Assertion Levels (CAL) to enable Test-Driven Development (TDD) of agent capabilities.
+
+Quickly understand and evaluate the capability levels of existing agents.
+
+For Teams:
+
+Establish a single source of truth that eliminates communication barriers.
+
+Standardize the agent design, development, and testing processes, improving development velocity and project maintainability.
+
+🔭 Ecosystem & Vision
+AGP is more than just a specification; we are committed to building a vibrant open-source ecosystem around it. Future plans include:
+
+agp-py: An official Python library for parsing, validating, and generating Agent Definition Profiles.
+
+Agent Profile Generator: A visual web tool that allows users to generate their own AGP profiles through a Q&A-style interface.
+
+Awesome Agent Profiles: An open community repository for collecting and showcasing excellent agent examples defined with AGP from around the world.
+
+🤝 Contributing
+We warmly welcome developers, researchers, and product managers from across the globe to help us refine the AGP protocol! You can get involved in the following ways:
+
+Propose changes or start a discussion by opening an Issue.
+
+Fork this repository and submit your changes via a Pull Request.
+
+Share your own Agent Definition Profiles in the examples directory.
+
+📄 License
+This project is licensed under the Apache License 2.0.
