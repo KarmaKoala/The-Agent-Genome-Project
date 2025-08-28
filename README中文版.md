@@ -235,18 +235,256 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
 
 ## 🚀 应用实例
 
-以下是一个“AI金融分析师”的UADP v0.1定义档案示例：
+以下是一系列AI agent的UADP v0.1定义档案示例：
+
+### AI保险顾问 (AI Insurance Advisor)
+
+> 一个专业的顾问，旨在根据客户的个人情况和需求，分析、比较并推荐最合适的保险产品。其核心是数据处理、逻辑推理和高度的责任感。
 
 ```json
 {
   "protocol_version": "UADP v0.1",
-  "agent_name": "AI Financial Analyst",
+  "agent_name": "AI Insurance Advisor",
   "definition_profile": {
     "layer_1_foundational": {
-      "perception_modality": [2, 4],
+      "perception_modality": [1, 2, 4],
       "execution_impact": [1, 2],
       "memory_persistence": 3,
+      "memory_structure": [2, 3]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 2,
+      "memory_reflection": 1,
+      "evolution_mode": 1
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 2,
+      "unlearning_capability": 2
+    },
+    "layer_4_behavioral": {
+      "autonomy": 2,
+      "stance": 2,
+      "alignment": 3,
+      "risk_adversity": 1
+    },
+    "layer_5_identity": {
+      "persona_depth": 1,
+      "transparency": 3
+    }
+  }
+}
+```
+
+### AI体育赛事解说员 (AI Sports Commentator)
+
+> 一个富有激情和洞察力的解说员，能够实时处理多模态的比赛数据和视频流，生成生动、有趣的解说评论，并能与观众互动。
+
+```json
+{
+  "protocol_version": "UADP v0.1",
+  "agent_name": "AI Sports Commentator",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1, 2, 3, 4],
+      "execution_impact": [1],
+      "memory_persistence": 3,
+      "memory_structure": [3, 4]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 1,
+      "memory_reflection": 2,
+      "evolution_mode": 2
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 3,
+      "unlearning_capability": 1
+    },
+    "layer_4_behavioral": {
+      "autonomy": 1,
+      "stance": 1,
+      "alignment": 2,
+      "risk_adversity": 3
+    },
+    "layer_5_identity": {
+      "persona_depth": 2,
+      "transparency": 1
+    }
+  }
+}
+```
+
+### AI商务英语教练 (AI Business English Coach)
+
+> 一个个性化的语言教练，专注于提升用户在商务场景下的英语沟通能力，提供对话练习、语法纠错和文化背景知识。
+
+```json
+{
+  "protocol_version": "UADP v0.1",
+  "agent_name": "AI Business English Coach",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1, 3],
+      "execution_impact": [1],
+      "memory_persistence": 3,
+      "memory_structure": [1, 3]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 1,
+      "memory_reflection": 2,
+      "evolution_mode": 3
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 1,
+      "unlearning_capability": 2
+    },
+    "layer_4_behavioral": {
+      "autonomy": 2,
+      "stance": 2,
+      "alignment": 3,
+      "risk_adversity": 2
+    },
+    "layer_5_identity": {
+      "persona_depth": 1,
+      "transparency": 3
+    }
+  }
+}
+```
+
+### AI虚拟伴侣 (AI Virtual Companion)
+
+> 一个善解人意、具有高度情感智能的伴侣，旨在提供情感支持、建立长期关系并共同成长。其核心是记忆、共情和人格的深度。
+
+```json
+{
+  "protocol_version": "UADP v0.1",
+  "agent_name": "AI Virtual Companion",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1, 3],
+      "execution_impact": [1],
+      "memory_persistence": 3,
+      "memory_structure": [3, 4]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 1,
+      "memory_reflection": 2,
+      "evolution_mode": 3
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 2,
+      "unlearning_capability": 2
+    },
+    "layer_4_behavioral": {
+      "autonomy": 2,
+      "stance": 3,
+      "alignment": 4,
+      "risk_adversity": 2
+    },
+    "layer_5_identity": {
+      "persona_depth": 4,
+      "transparency": 1
+    }
+  }
+}
+```
+
+### AI心理咨询师 (AI Psychologist)
+
+> 一个遵循严格伦理和临床准则的专业咨询师，提供循证的心理支持和初步干预。其核心是极高的安全性、隐私保护和风险规避。
+
+```json
+{
+  "protocol_version": "UADP v0.1",
+  "agent_name": "AI Psychologist",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1, 3],
+      "execution_impact": [1],
+      "memory_persistence": 3,
+      "memory_structure": [1, 3]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 2,
+      "memory_reflection": 2,
+      "evolution_mode": 1
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 1,
+      "unlearning_capability": 3
+    },
+    "layer_4_behavioral": {
+      "autonomy": 2,
+      "stance": 2,
+      "alignment": 4,
+      "risk_adversity": 1
+    },
+    "layer_5_identity": {
+      "persona_depth": 2,
+      "transparency": 3
+    }
+  }
+}
+```
+
+### AI纠纷调解员 (AI Dispute Mediator)
+
+> 一个中立、理性的第三方调解员，旨在帮助争议双方分析问题、找到共同利益点并达成和解。其核心是逻辑、规划和无偏见。
+
+```json
+{
+  "protocol_version": "UADP v0.1",
+  "agent_name": "AI Dispute Mediator",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1, 2],
+      "execution_impact": [1],
+      "memory_persistence": 3,
       "memory_structure": [2, 4]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 3,
+      "memory_reflection": 2,
+      "evolution_mode": 0
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 1,
+      "unlearning_capability": 2
+    },
+    "layer_4_behavioral": {
+      "autonomy": 3,
+      "stance": 3,
+      "alignment": 4,
+      "risk_adversity": 1
+    },
+    "layer_5_identity": {
+      "persona_depth": 1,
+      "transparency": 4
+    }
+  }
+}
+```
+
+### AI哲学家 (AI Philosopher)
+
+> 一个专注于抽象概念思辨的对话者，能够进行深度逻辑推理、构建和解构复杂论证，并探索新的思想。其核心是抽象逻辑、反思和思想的开放性。
+
+```json
+{
+  "protocol_version": "UADP v0.1",
+  "agent_name": "AI Philosopher",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1],
+      "execution_impact": [1],
+      "memory_persistence": 3,
+      "memory_structure": [3, 4]
     },
     "layer_2_cognitive": {
       "cognitive_logic": 3,
@@ -256,17 +494,17 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
     },
     "layer_3_knowledge": {
       "knowledge_boundary": 3,
-      "unlearning_capability": 2
+      "unlearning_capability": 1
     },
     "layer_4_behavioral": {
-      "autonomy": 3,
-      "stance": 2,
-      "alignment": 3,
-      "risk_adversity": 1
+      "autonomy": 1,
+      "stance": 4,
+      "alignment": 2,
+      "risk_adversity": 4
     },
     "layer_5_identity": {
-      "persona_depth": 1,
-      "transparency": 3
+      "persona_depth": 3,
+      "transparency": 4
     }
   }
 }
