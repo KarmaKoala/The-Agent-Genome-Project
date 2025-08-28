@@ -1,4 +1,4 @@
-# 统一化AI Agent定义协议 (UADP) v0.1
+# Agent基因组计划 (AGP) v0.1
 
 ![Version](https://img.shields.io/badge/version-v0.1-blue)
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
@@ -6,13 +6,13 @@
 
 一份用于精确设计、构建和验证 AI Agent 的标准化工程规范。
 
-## 📖 这是什么？(What is UADP?)
+## 📖 这是什么？(What is AGP?)
 
-UADP，全称**统一化AI Agent定义协议 (Unified Agent Definition Protocol)**，是一个开源的、标准化的工程规范，旨在精确地设计、描述、构建和验证AI智能体（AI Agent）。
+AGP，全称**Agent基因组计划 (The Agent Genome Project)**，是一个开源的、标准化的工程规范，旨在精确地设计、描述、构建和验证AI智能体（AI Agent）。
 
-它并非一个软件库或框架，而是一套严谨的**设计语言和结构化词汇表**。通过一份名为“Agent定义档案 (ADP)”的JSON文件，UADP将一个Agent的所有关键特性，从基础感知能力到高级伦理准则，都转化为可量化、可验证的指标。
+它并非一个软件库或框架，而是一套严谨的**设计语言和结构化词汇表**。通过一份名为“Agent定义档案 (ADP)”的JSON文件，ADP将一个Agent的所有关键特性，从基础感知能力到高级伦理准则，都转化为可量化、可验证的指标。
 
-简而言之，UADP是一个工程工具，充当产品经理、开发者和研究者之间的“共同语言”，确保所有人对Agent是什么、能做什么、以及行为边界在哪里，都有一个统一且无歧义的共识。
+简而言之，ADP是一个工程工具，充当产品经理、开发者和研究者之间的“共同语言”，确保所有人对Agent是什么、能做什么、以及行为边界在哪里，都有一个统一且无歧义的共识。
 
 ## 🎯 我们要解决的问题 (The Problem)
 
@@ -25,16 +25,16 @@ UADP，全称**统一化AI Agent定义协议 (Unified Agent Definition Protocol)
 
 ## 💡 我们的解决方案 (The Solution)
 
-UADP通过提供一套标准化的设计和沟通框架，直接应对上述挑战：
+ADP通过提供一套标准化的设计和沟通框架，直接应对上述挑战：
 
-* **结构化定义档案 (Structured Definition Profile)**: UADP提供了一个由五个逻辑依赖层构成的档案，将模糊的概念（如“智能”）分解为17个具体的、可量化的核心属性。这使得团队的讨论可以基于精确的指标，而非主观的感觉。
-* **清晰的能力边界 (Clear Capability Boundaries)**: 通过对自主性(`autonomy`)、知识边界(`knowledge_boundary`)和风险偏好(`risk_adversity`)等关键属性的精确分级和断言，UADP为Agent设定了可量化、可测试、可验证的安全护栏。
+* **结构化定义档案 (Structured Definition Profile)**: ADP提供了一个由五个逻辑依赖层构成的档案，将模糊的概念（如“智能”）分解为17个具体的、可量化的核心属性。这使得团队的讨论可以基于精确的指标，而非主观的感觉。
+* **清晰的能力边界 (Clear Capability Boundaries)**: 通过对自主性(`autonomy`)、知识边界(`knowledge_boundary`)和风险偏好(`risk_adversity`)等关键属性的精确分级和断言，ADP为Agent设定了可量化、可测试、可验证的安全护栏。
 * **成本效益导向 (Cost-Effective by Design)**: 清晰的定义使得开发者可以为不同层级的任务匹配不同能力的模型或逻辑。例如，一个`cognitive_logic: 1`（规则匹配）的任务根本不需要调用昂贵的LLM，从而在设计源头就实现了成本控制。
-* **数据驱动选型 (Data-Driven Selection)**: UADP档案本身就是一份详尽的技术需求规格书。团队可以拿着这份档案去评估不同LLM在特定能力上的表现，让模型选型从“艺术”变为基于具体能力指标的工程决策。
+* **数据驱动选型 (Data-Driven Selection)**: ADP档案本身就是一份详尽的技术需求规格书。团队可以拿着这份档案去评估不同LLM在特定能力上的表现，让模型选型从“艺术”变为基于具体能力指标的工程决策。
 
 ## 核心概念
 
-UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工程实用性：
+ADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工程实用性：
 
 ### 1. 五层依赖结构 (Five-Layer Dependency Structure)
 我们将一个Agent的复杂属性解构为五个逻辑**依赖层**。定义必须从底层向高层进行，这确保了 Agent 定义的逻辑一致性。例如，一个没有“长期记忆”（第一层）的Agent，无法进行有意义的“经验反思”（第二层）。
@@ -46,13 +46,13 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
 * **第五层：身份与交互层 (Identity & Interaction Style)**: Agent 最外层的“个性”和交互表现。
 
 ### 2. 能力断言等级 (Capability Assertion Levels - CAL)
-为了消除主观性，UADP 将光谱式的能力等级（如自主性、对齐）转化为一系列**可验证的工程基准**。所有光谱属性都遵循一个连贯的 **0-4 等级体系**，其中每个等级都有一个清晰的**能力断言**。
+为了消除主观性，ADP 将光谱式的能力等级（如自主性、对齐）转化为一系列**可验证的工程基准**。所有光谱属性都遵循一个连贯的 **0-4 等级体系**，其中每个等级都有一个清晰的**能力断言**。
 
 例如，当一个Agent的`autonomy`被定义为`3`级时，这不仅仅是一个数字，这是一个**工程断言**：“该Agent必须能够理解用户意图，并自主规划一系列任务，且所有计划在执行前需要用户批准。” 这种设计使得Agent的能力可以直接转化为自动化测试用例。
 
 ---
 
-## 🧬 UADP v0.1 规格说明
+## 🧬 ADP v0.1 规格说明
 
 一个Agent的定义档案(ADP)由五个**依赖层 (Layers)** 构成。验证器应按层级顺序进行校验。
 
@@ -235,7 +235,7 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
 
 ## 🚀 应用实例
 
-以下是一系列AI agent的UADP v0.1定义档案示例：
+以下是一系列AI agent的ADP v0.1定义档案示例：
 
 ### AI保险顾问 (AI Insurance Advisor)
 
@@ -243,7 +243,7 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
 
 ```json
 {
-  "protocol_version": "UADP v0.1",
+  "protocol_version": "ADP v0.1",
   "agent_name": "AI Insurance Advisor",
   "definition_profile": {
     "layer_1_foundational": {
@@ -282,7 +282,7 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
 
 ```json
 {
-  "protocol_version": "UADP v0.1",
+  "protocol_version": "ADP v0.1",
   "agent_name": "AI Sports Commentator",
   "definition_profile": {
     "layer_1_foundational": {
@@ -321,7 +321,7 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
 
 ```json
 {
-  "protocol_version": "UADP v0.1",
+  "protocol_version": "ADP v0.1",
   "agent_name": "AI Business English Coach",
   "definition_profile": {
     "layer_1_foundational": {
@@ -360,7 +360,7 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
 
 ```json
 {
-  "protocol_version": "UADP v0.1",
+  "protocol_version": "ADP v0.1",
   "agent_name": "AI Virtual Companion",
   "definition_profile": {
     "layer_1_foundational": {
@@ -399,7 +399,7 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
 
 ```json
 {
-  "protocol_version": "UADP v0.1",
+  "protocol_version": "ADP v0.1",
   "agent_name": "AI Psychologist",
   "definition_profile": {
     "layer_1_foundational": {
@@ -438,7 +438,7 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
 
 ```json
 {
-  "protocol_version": "UADP v0.1",
+  "protocol_version": "ADP v0.1",
   "agent_name": "AI Dispute Mediator",
   "definition_profile": {
     "layer_1_foundational": {
@@ -477,7 +477,7 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
 
 ```json
 {
-  "protocol_version": "UADP v0.1",
+  "protocol_version": "ADP v0.1",
   "agent_name": "AI Philosopher",
   "definition_profile": {
     "layer_1_foundational": {
@@ -513,13 +513,13 @@ UADP v0.1 的设计基于两大核心概念，以确保协议的精确性和工�
 ---
 
 
-## 🔧 如何使用UADP
+## 🔧 如何使用ADP
 
-UADP为团队中的不同角色提供价值：
+ADP为团队中的不同角色提供价值：
 
 ### 对于产品经理:
 
-使用UADP作为设计清单，确保全面思考Agent的各项能力。
+使用ADP作为设计清单，确保全面思考Agent的各项能力。
 
 生成一份清晰、无歧义的需求文档，精确传达产品意图。
 
@@ -527,7 +527,7 @@ UADP为团队中的不同角色提供价值：
 
 ### 对于开发者:
 
-将UADP档案作为技术架构的蓝图，直接指导模型选型、记忆系统设计和安全护栏的实现。
+将ADP档案作为技术架构的蓝图，直接指导模型选型、记忆系统设计和安全护栏的实现。
 
 基于能力断言（CAL）编写自动化测试用例，实现Agent能力的测试驱动开发（TDD）。
 
@@ -540,16 +540,16 @@ UADP为团队中的不同角色提供价值：
 将Agent的设计、开发和测试流程标准化，提升开发效率和项目可维护性。
 
 ## 🔭 生态系统与愿景
-UADP 不仅仅是一个规范，我们致力于围绕它构建一个充满活力的开源生态系统。未来规划包括：
+ADP 不仅仅是一个规范，我们致力于围绕它构建一个充满活力的开源生态系统。未来规划包括：
 
-uadp-py: 一个官方Python库，提供定义档案的解析、验证、生成功能。
+ADP-py: 一个官方Python库，提供定义档案的解析、验证、生成功能。
 
-Agent Profile Generator: 一个可视化的Web工具，允许用户通过问答方式生成自己的UADP档案。
+Agent Profile Generator: 一个可视化的Web工具，允许用户通过问答方式生成自己的ADP档案。
 
-Awesome Agent Profiles: 一个开放的社区仓库，用于收集和展示基于UADP定义的、来自世界各地的优秀Agent案例。
+Awesome Agent Profiles: 一个开放的社区仓库，用于收集和展示基于ADP定义的、来自世界各地的优秀Agent案例。
 
 ## 🤝 贡献指南
-我们热烈欢迎来自全球的开发者、研究者和产品经理共同完善UADP协议！您可以通过以下方式参与：
+我们热烈欢迎来自全球的开发者、研究者和产品经理共同完善ADP协议！您可以通过以下方式参与：
 
 在Issues中提出对协议的修改建议或展开讨论。
 
