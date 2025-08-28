@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 
-一份用于精确设计、构建和验证 AI Agent 的标准化工程规范。
+The Agent Genome Project (AGP): The open-source engineering blueprint for defining the core capabilities, boundaries, and ethics of any AI agent.
 
 ## 📖 这是什么？(What is AGP?)
 
