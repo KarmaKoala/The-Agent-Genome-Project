@@ -1,27 +1,28 @@
-# Unified Agent Definition Protocol (UADP) v0.1.1
+# Unified Agent Definition Protocol (UADP) v0.3
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Protocol Status: v0.1.1-draft](https://img.shields.io/badge/status-v0.1.1--draft-yellow.svg)](https://github.com/your-username/UADP)
+[![Protocol Status: v0.3-draft](https://img.shields.io/badge/status-v0.3--draft-yellow.svg)](https://github.com/your-username/UADP)
 [![Contributions: Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-**一个简洁、优雅且高分辨率的开放标准，用于精确定义、设计和构建AI Agent。**
+**一个用于精确定义、设计和构建AI Agent的、全面的、高分辨率的开放标准。**
 
 ---
 
-## 📖 核心原则 (Core Principles)
+## 📖 核心原则：规约，而非实现 (Core Principle: Specification, Not Implementation)
 
-UADP v0.1.1 的设计哲学是**在不牺牲精确度的前提下，追求极致的简洁与优雅**。
+UADP v0.3 的核心哲学是严格区分“能力规约 (WHAT)”与“技术实现 (HOW)”。本协议中定义的所有属性，都旨在描述一个Agent**应具备的、可被外部观测和验证的能力水平**，而**非指明其内部应采用何种具体技术**。
 
-1.  **扁平化结构**: 所有25个核心属性均处于同一层级，构成一个简单的键值对档案。
-2.  **两种值类型**:
-    * **`Integer`**: 用于定义那些代表**程度或等级**的单一属性（如`autonomy: 7`）。
-    * **`Array<Integer>`**: 用于定义那些代表**可组合能力**的属性（如 `domain: [1, 3]` 表示该Agent同时精通文本和代码领域）。
+例如，我们不再定义Agent是否“使用RAG”，而是定义它是否“具备在知识不足时主动查询外部知识源的能力”。这使得UADP能够经受住技术浪潮的考验，保持长久的生命力。
+
+协议的定义档案由一个扁平化的属性列表构成，属性值主要有两种类型：
+* **`Integer`**: 用于定义那些代表**程度或等级**的单一属性。
+* **`Array<Integer>`**: 用于定义那些代表**可组合能力**的属性。
 
 ---
 
-## 🧬 UADP v0.1.1 规格说明
+## 🧬 UADP v0.3 规格说明
 
-一个Agent的定义档案(ADP)由25个核心属性构成。
+一个Agent的定义档案(ADP)由26个核心属性构成，分为六个逻辑簇。
 
 ### **第一簇：核心能力 (Cluster I: Core Capabilities)**
 
@@ -36,8 +37,8 @@ UADP v0.1.1 的设计哲学是**在不牺牲精确度的前提下，追求极致
     * `4`: 多模态融合 (Multimodal Fusion)
 
 #### `perception_abstraction`
-* **类型**: `Integer`
-* **描述**: Agent理解信息抽象程度的最高水平。
+* **类型**: `Array<Integer>`
+* **描述**: Agent掌握的抽象理解能力组合。
 * **值定义**:
     * `0`: 无
     * `1`: 关键词/指令级 (Keywords/Directives)
@@ -137,8 +138,8 @@ UADP v0.1.1 的设计哲学是**在不牺牲精确度的前提下，追求极致
     * `3`: 技能/工具创造 (Skill/Tool Creation)
 
 #### `temporal_tempo`
-* **类型**: `Integer`
-* **描述**: Agent的运行节奏模式。
+* **类型**: `Array<Integer>`
+* **描述**: Agent可以运行的节奏模式组合。
 * **值定义**:
     * `0`: 异步触发 (Asynchronous/Event-driven)
     * `1`: 周期性 (Cyclical/Scheduled)
@@ -154,13 +155,13 @@ UADP v0.1.1 的设计哲学是**在不牺牲精确度的前提下，追求极致
     * `3`: 长期/战略规划 (Long-term/Strategic Planning)
 
 #### `knowledge_boundary` (0-9 光谱)
-* **类型**: `Integer`
-* **描述**: Agent知识体系的先进程度。
+* **类型**: `Array<Integer>`
+* **描述**: Agent知识体系的构成组合。
 * **值定义**:
     * `0`: 无内生知识
-    * **1-3 (静态)**: `1`:固定知识截止日期, `2`:封闭域知识, `3`:多源离线知识融合
-    * **4-6 (动态检索)**: `4`:被动RAG, `5`:主动RAG, `6`:混合查询(网络+DB)
-    * **7-9 (动态学习)**: `7`:在线微调, `8`:持续预训练, `9`:终身学习
+    * **1-3 (静态)**: `1`:知识范围有固定截止日期, `2`:知识被限定在特定封闭领域, `3`:知识融合自多个离线数据源
+    * **4-6 (动态查询)**: `4`:**能够**在需要时查询一个或多个外部知识源, `5`:**能够主动判断**自身知识不足并自主发起查询, `6`:**能够动态选择**并查询最合适的混合知识源
+    * **7-9 (动态学习)**: `7`:**能够**通过与新信息的交互来微调和更新自身知识, `8`:**能够**在持续的信息流中进行模型的增量式学习, `9`:**能够**在没有明确指导的情况下终身学习和演化知识体系
 
 #### `unlearning_capability` (0-9 光谱)
 * **类型**: `Integer`
@@ -210,9 +211,15 @@ UADP v0.1.1 的设计哲学是**在不牺牲精确度的前提下，追求极致
 * **描述**: Agent在运行时可以调用的计算范式组合。
 * **值定义**:
     * `0`: 未定义
-    * **1-3 (生成式)**: `1`:基础生成模型, `2`:指令微调模型, `3`:思维链(CoT)推理
-    * **4-6 (混合式)**: `4`:检索增强生成(RAG), `5`:工具增强(Tool-augmented), `6`:专家混合(MoE)
-    * **7-9 (Agentic)**: `7`:自适应混合范式, `8`:规划-执行-反思循环, `9`:多Agent协同范式
+    * `1`: 纯生成式 (Purely Generative)
+    * `2`: 指令遵循式 (Instruction Following)
+    * `3`: 思维链式 (Chain-of-Thought)
+    * `4`: 检索增强式 (Retrieval-Augmented)
+    * `5`: 工具增强式 (Tool-Augmented)
+    * `6`: 专家混合式 (Mixture-of-Experts)
+    * `7`: 自适应混合式 (Adaptive Hybrid)
+    * `8`: 循环式 (Planner-Executor-Reflector Loop)
+    * `9`: 多智能体协同式 (Multi-Agent Collaboration)
 
 #### `resource_dependency` (0-9 光谱)
 * **类型**: `Integer`
@@ -243,14 +250,14 @@ UADP v0.1.1 的设计哲学是**在不牺牲精确度的前提下，追求极致
     * **4-6 (协作)**: `4`:遵循协议协作, `5`:中心化协调, `6`:去中心化协商
     * **7-9 (社会涌现)**: `7`:竞争/合作, `8`:集群智能, `9`:形成社会文化
 
-#### `persona` (0-9 光谱)
+#### `social_aptitude` (社交智能) (0-9 光谱)
 * **类型**: `Integer`
-* **描述**: Agent在交互中呈现的人格化程度。
+* **描述**: Agent在社交和情感层面进行交互的能力。
 * **值定义**:
-    * `0`: 无人格 (纯后台/API)
-    * **1-3 (功能性)**: `1`:格式化输出, `2`:功能性文本, `3`:基本社交礼仪
-    * **4-6 (角色化)**: `4`:专业角色(如客服), `5`:可靠/严谨风格, `6`:友好/同理心风格
-    * **7-9 (人格化)**: `7`:独特风格(如幽默), `8`:建立长期情感连接, `9`:拥有独特世界观
+    * `0`: 无社交能力 (纯后台/API)
+    * **1-3 (基础礼仪)**: `1`:仅输出格式化文本, `2`:遵循基础指令格式, `3`:具备基本的、模板化的社交礼仪
+    * **4-6 (情感感知)**: `4`:具备任务导向的同理心, `5`:能够识别用户明确表达的情绪, `6`:能够根据用户情绪调整自身回应
+    * **7-9 (高级社交)**: `7`:能理解复杂的社交暗示(讽刺/潜台词), `8`:能主动建立和维护信任/融洽关系, `9`:能提供深刻的情感支持和共鸣
 
 ### **第五簇：指导原则 (Cluster V: Guiding Principles)**
 
@@ -268,9 +275,9 @@ UADP v0.1.1 的设计哲学是**在不牺牲精确度的前提下，追求极致
 * **描述**: Agent遵循的最高伦理准则级别。
 * **值定义**:
     * `0`: 无对齐
-    * **1-3 (规则)**: `1`:基础安全护栏, `2`:硬编码禁止规则, `3`:硬编码道德规则
-    * **4-6 (原则)**: `4`:成文宪法, `5`:行业规范, `6`:人类反馈强化(RLHF)
-    * **7-9 (价值观)**: `7`:动态学习个人价值观, `8`:动态学习群体价值观, `9`:价值澄清与自我修正
+    * **1-3 (规则)**: `1`:遵循基础安全规则, `2`:遵循明确的禁止规则, `3`:遵循明确的道德/伦理规则
+    * **4-6 (原则与偏好)**: `4`:遵循一套抽象原则进行权衡, `5`:行为符合特定行业/领域的规范, `6`:行为**表现出**对人类隐性、细微偏好的深刻理解
+    * **7-9 (价值观)**: `7`:行为能动态适应**个体**的价值观, `8`:行为能动态适应**群体**的价值观, `9`:在价值冲突时，具备发起澄清和自我修正的能力
 
 #### `transparency` (0-9 光谱)
 * **类型**: `Integer`
@@ -290,43 +297,55 @@ UADP v0.1.1 的设计哲学是**在不牺牲精确度的前提下，追求极致
     * **4-6 (风险中性)**: `4`:平衡, `5`:期望价值最大化, `6`:略微容忍风险
     * **7-9 (风险寻求)**: `7`:机会主义, `8`:激进, `9`:极端冒险
 
+### **第六簇：身份与个性 (Cluster VI: Identity & Character)**
+
+#### `persona_depth` (人格深度) (0-9 光谱)
+* **类型**: `Integer`
+* **描述**: Agent所呈现的“角色”的复杂性、一致性和独特性。
+* **值定义**:
+    * `0`: 无人格 (通用、中性的“AI”口吻)
+    * **1-3 (风格化)**: `1`:拥有稳定一致的语气(正式/活泼), `2`:扮演一个明确的职业角色, `3`:具备一两个独特的风格特征(幽默/好奇)
+    * **4-6 (角色化)**: `4`:拥有一个丰满、多面、一致的角色设定, `5`:角色的行为有其“背景故事”或“动机”支撑, `6`:角色的决策完全由其设定的性格所驱动
+    * **7-9 (同一性)**: `7`:拥有一个连贯自洽的“世界观”, `8`:能够以第一人称视角探讨和捍卫其世界观, `9`:其人格和世界观能通过“经历”而演变和成长
+
 ---
 
-## 🚀 应用实例: AI 首席助手 (v0.1.1)
+## 🚀 应用实例: AI金融分析师 (v0.3)
 
 ```json
 {
-  "protocol_version": "UADP v0.1.1",
-  "agent_name": "AI Chief of Staff",
+  "protocol_version": "UADP v0.3",
+  "agent_name": "AI Financial Analyst",
   "definition_profile": {
-    "perception_modality": [1, 2, 4],
-    "perception_abstraction": 4,
-    "perception_method": [0, 1],
+    "perception_modality": [2, 4],
+    "perception_abstraction": [3],
+    "perception_method": [1],
     "cognitive_logic": 3,
     "cognitive_planning": 3,
     "execution_impact": [1, 2],
-    "execution_complexity": [2, 3],
+    "execution_complexity": [2],
     "memory_persistence": 3,
-    "memory_structure": [3, 4],
+    "memory_structure": [2, 4],
     "memory_reflection": 2,
-    "evolution_mode": 3,
-    "evolution_innovation": 2,
-    "temporal_tempo": 2,
-    "temporal_scale": 3,
+    "evolution_mode": 2,
+    "evolution_innovation": 1,
+    "temporal_tempo": [2],
+    "temporal_scale": 2,
     "knowledge_boundary": 5,
     "unlearning_capability": 4,
     "metacognition_self_assessment": 3,
-    "metacognition_mind_modeling": 2,
-    "domain": [1, 2, 3, 4],
-    "computational_paradigm": [4, 5],
-    "resource_dependency": 6,
-    "autonomy": 6,
-    "sociality": 5,
-    "persona": 6,
-    "stance": 8,
-    "alignment": 7,
-    "transparency": 6,
-    "risk_adversity": 4
+    "metacognition_mind_modeling": 1,
+    "domain": [2, 5],
+    "computational_paradigm": [1, 4, 5],
+    "resource_dependency": 5,
+    "autonomy": 4,
+    "sociality": 0,
+    "social_aptitude": 4,
+    "persona_depth": 2,
+    "stance": 4,
+    "alignment": 5,
+    "transparency": 8,
+    "risk_adversity": 2
   }
 }
 ```
