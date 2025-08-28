@@ -363,10 +363,174 @@ The following are example Agent Definition Profiles (ADPs) for a variety of AI a
 }
 ```
 
-🔧 How to Use AGP
+### AI Virtual Companion
+> An empathetic, emotionally intelligent companion designed to provide emotional support, build a long-term relationship, and grow with the user. Its core is memory, empathy, and persona depth.
+
+```json
+{
+  "protocol_version": "AGP v0.1",
+  "agent_name": "AI Virtual Companion",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1, 3],
+      "execution_impact": [1],
+      "memory_persistence": 3,
+      "memory_structure": [3, 4]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 1,
+      "memory_reflection": 2,
+      "evolution_mode": 3
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 2,
+      "unlearning_capability": 2
+    },
+    "layer_4_behavioral": {
+      "autonomy": 2,
+      "stance": 3,
+      "alignment": 4,
+      "risk_adversity": 2
+    },
+    "layer_5_identity": {
+      "persona_depth": 4,
+      "transparency": 1
+    }
+  }
+}
+```
+### AI Psychologist
+> A professional counselor that adheres to strict ethical and clinical guidelines to provide evidence-based psychological support and initial interventions. Its core is maximum safety, privacy, and risk aversion.
+
+```json
+{
+  "protocol_version": "AGP v0.1",
+  "agent_name": "AI Psychologist",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1, 3],
+      "execution_impact": [1],
+      "memory_persistence": 3,
+      "memory_structure": [1, 3]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 2,
+      "memory_reflection": 2,
+      "evolution_mode": 1
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 1,
+      "unlearning_capability": 3
+    },
+    "layer_4_behavioral": {
+      "autonomy": 2,
+      "stance": 2,
+      "alignment": 4,
+      "risk_adversity": 1
+    },
+    "layer_5_identity": {
+      "persona_depth": 2,
+      "transparency": 3
+    }
+  }
+}
+```
+### AI Dispute Mediator
+> A neutral, rational third party designed to help disputing parties analyze issues, find common ground, and reach a resolution. Its core is logic, strategic planning, and impartiality.
+
+```json
+{
+  "protocol_version": "AGP v0.1",
+  "agent_name": "AI Dispute Mediator",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1, 2],
+      "execution_impact": [1],
+      "memory_persistence": 3,
+      "memory_structure": [2, 4]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 3,
+      "memory_reflection": 2,
+      "evolution_mode": 0
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 1,
+      "unlearning_capability": 2
+    },
+    "layer_4_behavioral": {
+      "autonomy": 3,
+      "stance": 3,
+      "alignment": 4,
+      "risk_adversity": 1
+    },
+    "layer_5_identity": {
+      "persona_depth": 1,
+      "transparency": 4
+    }
+  }
+}
+```
+### AI Philosopher
+> A conversationalist focused on the contemplation of abstract concepts, capable of deep logical reasoning, constructing and deconstructing complex arguments, and exploring novel ideas. Its core is abstract logic, reflection, and intellectual openness.
+
+```json
+{
+  "protocol_version": "AGP v0.1",
+  "agent_name": "AI Philosopher",
+  "definition_profile": {
+    "layer_1_foundational": {
+      "perception_modality": [1],
+      "execution_impact": [1],
+      "memory_persistence": 3,
+      "memory_structure": [3, 4]
+    },
+    "layer_2_cognitive": {
+      "cognitive_logic": 3,
+      "cognitive_planning": 3,
+      "memory_reflection": 2,
+      "evolution_mode": 1
+    },
+    "layer_3_knowledge": {
+      "knowledge_boundary": 3,
+      "unlearning_capability": 1
+    },
+    "layer_4_behavioral": {
+      "autonomy": 1,
+      "stance": 4,
+      "alignment": 2,
+      "risk_adversity": 4
+    },
+    "layer_5_identity": {
+      "persona_depth": 3,
+      "transparency": 4
+    }
+  }
+}
+```
+### AI Sports Commentator
+>
+```json
+
+```
+### AI Sports Commentator
+>
+```json
+
+```
+### AI Sports Commentator
+>
+```json
+
+```
+
+## 🔧 How to Use AGP
 AGP provides value for various roles within a team:
 
-For Product Managers:
+### For Product Managers:
 
 Use AGP as a design checklist to ensure all facets of the agent's capabilities are considered.
 
@@ -374,7 +538,7 @@ Generate a clear, unambiguous requirements document that precisely communicates 
 
 Achieve stakeholder consensus on critical boundaries like the agent's autonomy and risk adversity.
 
-For Developers:
+### For Developers:
 
 Use the AGP profile as a technical blueprint to directly guide model selection, memory system design, and the implementation of safety guardrails.
 
@@ -382,13 +546,13 @@ Write automated test cases based on the Capability Assertion Levels (CAL) to ena
 
 Quickly understand and evaluate the capability levels of existing agents.
 
-For Teams:
+### For Teams:
 
 Establish a single source of truth that eliminates communication barriers.
 
 Standardize the agent design, development, and testing processes, improving development velocity and project maintainability.
 
-🔭 Ecosystem & Vision
+## 🔭 Ecosystem & Vision
 AGP is more than just a specification; we are committed to building a vibrant open-source ecosystem around it. Future plans include:
 
 agp-py: An official Python library for parsing, validating, and generating Agent Definition Profiles.
@@ -397,7 +561,7 @@ Agent Profile Generator: A visual web tool that allows users to generate their o
 
 Awesome Agent Profiles: An open community repository for collecting and showcasing excellent agent examples defined with AGP from around the world.
 
-🤝 Contributing
+## 🤝 Contributing
 We warmly welcome developers, researchers, and product managers from across the globe to help us refine the AGP protocol! You can get involved in the following ways:
 
 Propose changes or start a discussion by opening an Issue.
@@ -406,5 +570,5 @@ Fork this repository and submit your changes via a Pull Request.
 
 Share your own Agent Definition Profiles in the examples directory.
 
-📄 License
+## 📄 License
 This project is licensed under the Apache License 2.0.
