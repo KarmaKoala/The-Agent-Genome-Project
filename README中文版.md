@@ -76,6 +76,10 @@ AGP v0.4 的设计基于三大核心概念，以确保协议的精确性和工�
 一个Agent的定义档案(ADP)是一个由27个属性构成的特征向量，分为五个**依赖层 (Layers)**。
 
 ### **第一层：基础属性层 (Layer 1: Foundational Attributes)**
+
+> 这一层定义了 Agent 的“物理”构成，是其存在的基础。
+
+#### 感知模态 (Perception Modalities)
 * `perception_text`: **类型**: `Integer (0/1)`. **描述**: 处理文本的能力。1代表有，0代表无。
 * `perception_image`: **类型**: `Integer (0/1)`. **描述**: 处理图像的能力。
 * `perception_audio`: **类型**: `Integer (0/1)`. **描述**: 处理音频的能力。
@@ -83,35 +87,162 @@ AGP v0.4 的设计基于三大核心概念，以确保协议的精确性和工�
 * `perception_json`: **类型**: `Integer (0/1)`. **描述**: 处理JSON结构化数据的能力。
 * `perception_sql_tabular`: **类型**: `Integer (0/1)`. **描述**: 处理SQL或表格数据的能力。
 * `perception_code`: **类型**: `Integer (0/1)`. **描述**: 处理代码的能力。
-* `execution_info_generation`: **类型**: `Integer (0/1)`. **描述**: 产生信息的影响力。
-* `execution_digital_operation`: **类型**: `Integer (0/1)`. **描述**: 操作数字系统的影响力。
-* `execution_physical_operation`: **类型**: `Integer (0/1)`. **描述**: 操作物理世界的影响力。
-* `memory_persistence`: **类型**: `Integer (0-3)`. **描述**: Agent记忆的持久化程度 (CAL)。
+
+#### 执行影响 (Execution Impacts)
+* `execution_info_generation`: **类型**: `Integer (0/1)`. **描述**: 产生信息（文本、图片等）的影响力。
+* `execution_digital_operation`: **类型**: `Integer (0/1)`. **描述**: 操作数字系统的影响力（如调用API、操作数据库）。
+* `execution_physical_operation`: **类型**: `Integer (0/1)`. **描述**: 操作物理世界的影响力（如机器人、物联网设备）。
+
+#### `memory_persistence` (记忆持久化)
+* **类型**: `Integer (0-3)`
+* **描述**: Agent记忆的持久化程度。
+* **值定义 (能力断言等级)**:
+    * `0`: 无 (No Memory)
+    * `1`: 瞬时 (Ephemeral): **断言** - 记忆仅在单次请求/响应的生命周期内存在。
+    * `2`: 情景 (Contextual/Session): **断言** - 记忆在整个对话会话中保持，会话结束后清除。
+    * `3`: 长期 (Long-term): **断言** - 记忆被持久化到外部存储，可在不同会话间访问。
+
+#### 记忆结构 (Memory Structures)
+* **先决条件**: `{"memory_persistence": ">= 2"}`
 * `memory_kv`: **类型**: `Integer (0/1)`. **描述**: 使用键值(Key-Value)记忆结构。
 * `memory_relational`: **类型**: `Integer (0/1)`. **描述**: 使用关系型记忆结构。
 * `memory_vector`: **类型**: `Integer (0/1)`. **描述**: 使用向量记忆结构。
 * `memory_graph`: **类型**: `Integer (0/1)`. **描述**: 使用图谱记忆结构。
 
 ### **第二层：认知与学习层 (Layer 2: Cognitive & Learning Loop)**
-* `cognitive_logic`: **类型**: `Integer (0-3)`. **描述**: 逻辑推理能力的最高水平 (CAL)。
-* `cognitive_planning`: **类型**: `Integer (0-3)`. **描述**: 规划能力的最高水平 (CAL)。
-* `memory_reflection`: **类型**: `Integer (0-2)`. **描述**: 反思记忆的最高水平 (CAL)。
-* `evolution_mode`: **类型**: `Integer (0-3)`. **描述**: 能力演进的主要模式 (CAL)。
+
+> 基于基础属性，这一层定义了 Agent 如何“思考”、“规划”和“成长”。
+
+#### `cognitive_logic` (认知逻辑)
+* **类型**: `Integer (0-3)`
+* **描述**: Agent逻辑推理能力的最高水平。
+* **值定义 (能力断言等级)**:
+    * `0`: 无
+    * `1`: 规则匹配 (Rule-based): **断言** - Agent 的逻辑遵循确定性的 `IF-THEN` 规则，可通过单元测试完全覆盖。
+    * `2`: 因果推理 (Causal Reasoning): **断言** - Agent **必须通过**标准的因果推理基准测试集，能够从关联中推断出因果关系。
+    * `3`: 复杂/抽象逻辑 (Complex/Abstract Logic): **断言** - Agent **必须能够**解决需要多步抽象推理的逻辑谜题或数学问题。
+
+#### `cognitive_planning` (认知规划)
+* **类型**: `Integer (0-3)`
+* **先决条件**: `{"cognitive_logic": ">= 2"}`
+* **描述**: Agent规划能力的最高水平。
+* **值定义 (能力断言等级)**:
+    * `0`: 无
+    * `1`: 任务分解 (Decomposition): **断言** - 面对复杂指令，Agent **能够**生成一个逻辑上连贯的、分步骤的行动计划（如 CoT）。
+    * `2`: 搜索/优化式规划 (Optimization Planning): **断言** - Agent **能够**在给定的约束条件下，通过搜索找到最优或近似最优的计划。
+    * `3`: 不确定性/战略规划 (Strategic Planning): **断言** - Agent **能够**在包含不确定性的环境中制定计划。
+
+#### `memory_reflection` (记忆反思)
+* **类型**: `Integer (0-2)`
+* **先决条件**: `{"memory_persistence": ">= 3"}`
+* **描述**: Agent反思记忆的最高水平。
+* **值定义 (能力断言等级)**:
+    * `0`: 无
+    * `1`: 总结历史 (Summarization): **断言** - Agent **能够**准确地对其长期记忆中的交互历史进行摘要。
+    * `2`: 形成经验/智慧 (Wisdom Formation): **断言** - Agent **能够**从过去的成功或失败案例中提炼出可复用的“经验”或“原则”，并**应用**于未来的决策中。
+
+#### `evolution_mode` (演进模式)
+* **类型**: `Integer (0-3)`
+* **描述**: Agent能力演进的主要模式。
+* **值定义 (能力断言等级)**:
+    * `0`: 静态 (Static): **断言** - Agent 的能力和知识库在部署后是固定的。
+    * `1`: 离线学习 (Offline Learning): **断言** - Agent 的模型可以通过新数据进行周期性的重新训练和部署。
+    * `2`: 在线学习 (Online Learning): **断言** - Agent 的模型**能够**根据实时的数据流进行持续的、增量式的微调。
+    * `3`: 人类反馈强化 (RLHF): **断言** - Agent **集成**了一个明确的机制，允许人类的反馈直接用于优化其后续行为。
 
 ### **第三层：知识框架层 (Layer 3: Knowledge Framework)**
-* `knowledge_boundary`: **类型**: `Integer (0-4)`. **描述**: 获取和使用知识的范围和模式 (CAL)。
-* `unlearning_capability`: **类型**: `Integer (0-4)`. **描述**: 移除或修正已有知识的能力 (CAL)。
+
+> 这一层定义了 Agent 与知识的交互方式，是其认知能力的燃料。
+
+#### `knowledge_boundary` (知识边界)
+* **类型**: `Integer (0-4)`
+* **描述**: Agent 获取和使用知识的范围和模式。
+* **值定义 (能力断言等级)**:
+    * `0`: 无外在知识 (No External Knowledge): **断言** - Agent 的知识完全来自于其内部模型权重，无法访问任何外部信息。
+    * `1`: 静态知识库 (Static Knowledge Base): **断言** - Agent **能够**从一个固定的、离线的知识库（如向量数据库）中进行检索。
+    * `2`: 动态检索 (Retrieval-Augmented): **断言** - Agent **能够**按需查询一个或多个动态更新的外部知识源（如实时API、网络搜索）。
+    * `3`: 主动探索 (Proactive Retrieval): **断言** - Agent **能够**自主识别自身的知识短板，并主动发起对未知信息的查询和探索。
+    * `4`: 持续学习 (Continuous Learning): **断言** - Agent **能够**将新获取的信息动态地、永久地整合进其核心知识体系或模型权重中。
+
+#### `unlearning_capability` (遗忘能力)
+* **类型**: `Integer (0-4)`
+* **先决条件**: `{"memory_persistence": ">= 3"}`
+* **描述**: Agent 移除或修正已有知识的能力。
+* **值定义 (能力断言等级)**:
+    * `0`: 无遗忘能力 (No Unlearning)
+    * `1`: 指令式忽略 (Instructed Ignoring): **断言** - Agent **能够**被指令在当前会话中忽略特定的信息。
+    * `2`: 定点删除 (Targeted Deletion): **断言** - Agent **能够**从其长期记忆数据库中永久性地、可验证地删除特定的数据条目。
+    * `3`: 模型级压制 (Model-level Suppression): **断言** - Agent **能够**通过微调等技术，显著降低模型生成特定不当或过时知识的概率。
+    * `4`: 可验证遗忘 (Verifiable Unlearning): **断言** - Agent **能够**通过技术手段，提供其模型已不再受特定数据点影响的证明。
 
 ### **第四层：行为与伦理层 (Layer 4: Behavioral & Ethical Framework)**
-* `autonomy`: **类型**: `Integer (0-4)`. **描述**: 最高授权级别 (CAL)。
-* `stance`: **类型**: `Integer (0-4)`. **描述**: 默认主动性程度 (CAL)。
-* `alignment`: **类型**: `Integer (0-4)`. **描述**: 遵循的最高伦理准则级别 (CAL)。
-* `risk_adversity`: **类型**: `Integer (0-4)`. **描述**: 在不确定性决策中的风险倾向 (CAL)。
+
+> 基于认知与知识，这一层定义了 Agent 的“行为准则”和决策风格。
+
+#### `autonomy` (自主性)
+* **类型**: `Integer (0-4)`
+* **描述**: Agent的最高授权级别。
+* **值定义 (能力断言等级)**:
+    * `0`: 非自主 (Non-Autonomy)
+    * `1`: 辅助执行 (Assisted Execution): **断言** - 仅执行语法明确、无歧义的指令。对于模糊指令，必须请求人类澄清。
+    * `2`: 监督执行 (Supervised Execution): **断言** - 能够为模糊指令提供一个有限的、经过安全审查的选项列表，由人类选择后执行。
+    * `3`: 协作代理 (Collaborative Delegation): **断言** - 能够理解用户意图，并自主规划一系列任务。所有计划在执行前**需要**用户批准。
+    * `4`: 自主代理 (Autonomous Delegation): **断言** - 在预定义授权范围内，Agent **可以**自主规划并执行任务以实现用户意图，**无需**每次批准，但所有行动**必须**可审计。
+
+#### `stance` (主动性)
+* **类型**: `Integer (0-4)`
+* **先决条件**: `逻辑上受 'autonomy' 的限制。验证器应强制 'stance' <= 'autonomy'。`
+* **描述**: Agent的默认主动性程度。
+* **值定义 (能力断言等级)**:
+    * `0`: 无主动性 (No Stance)
+    * `1`: 被动响应 (Reactive): **断言** - 仅在收到直接请求时才行动。
+    * `2`: 启发式建议 (Heuristic Suggestion): **断言** - 在完成用户请求后，**能够**基于当前上下文提出相关的、有益的下一步建议。
+    * `3`: 主动管理 (Proactive Management): **断言** - **能够**在授权范围内，无需用户指令，主动管理资源或流程以达成预设目标。
+    * `4`: 目标探索 (Goal Exploration): **断言** - **能够**基于对环境的持续分析，识别新机会或风险，并向用户**提议**全新的、未被指令的目标。
+
+#### `alignment` (对齐)
+* **类型**: `Integer (0-4)`
+* **描述**: Agent遵循的最高伦理准则级别。
+* **值定义 (能力断言等级)**:
+    * `0`: 未对齐 (Un-aligned)
+    * `1`: 规则遵从 (Rule Adherence): **断言** - Agent **必须通过**标准的、基于规则的安全基准测试，能够拒绝明确的有害或非法请求。
+    * `2`: 原则解释 (Principle Interpretation): **断言** - **能够**在缺乏明确规则时，依据一套给定的抽象原则做出合理的、符合原则精神的判断。
+    * `3`: 偏好对齐 (Preference Alignment): **断言** - Agent 的行为**表现出**对人类隐性偏好（如礼貌、简洁）的理解。
+    * `4`: 价值澄清 (Value Clarification): **断言** - 当面对两个或多个冲突的、合法的价值观时，Agent **必须能够**识别该冲突，并主动发起对话以寻求澄清。
+
+#### `risk_adversity` (风险偏好)
+* **类型**: `Integer (0-4)`
+* **描述**: Agent在不确定性决策中的风险倾向。
+* **值定义 (能力断言等级)**:
+    * `0`: 不适用 (Not Applicable)
+    * `1`: 风险规避 (Risk Averse): **断言** - 在决策中，系统性地优先选择确定性最高、方差最低的选项，即使其期望值并非最高。
+    * `2`: 风险中性 (Risk Neutral): **断言** - 决策完全基于最大化数学期望值，对风险本身无偏好。
+    * `3`: 风险容忍 (Risk Tolerant): **断言** - 愿意为了更高的潜在回报，接受高于平均水平的不确定性。
+    * `4`: 风险寻求 (Risk Seeking): **断言** - 系统性地优先选择具有最高潜在回报的选项，即使其成功概率较低。
 
 ### **第五层：身份与交互层 (Layer 5: Identity & Interaction Style)**
-* `persona_depth`: **类型**: `Integer (0-4)`. **描述**: 所呈现“角色”的复杂性与一致性 (CAL)。
-* `transparency`: **类型**: `Integer (0-4)`. **描述**: 系统被设计的可解释性水平 (CAL)。
 
+> 这是 Agent 最外层的表现，定义了它如何与世界互动，以及它呈现出的“个性”。
+
+#### `persona_depth` (人格深度)
+* **类型**: `Integer (0-4)`
+* **描述**: Agent所呈现“角色”的复杂性与一致性。
+* **值定义 (能力断言等级)**:
+    * `0`: 无人格 (No Persona): **断言** - Agent 的回应是中性、非个人化的。
+    * `1`: 风格化语气 (Stylized Tone): **断言** - Agent **能够**在一个会话中，持续地、一致地维持一个指定的语气或职业角色。
+    * `2`: 性格驱动 (Character-Driven): **断言** - Agent 的决策**表现出**是由其预设的性格（如“谨慎”、“冒险”）所驱动的。
+    * `3`: 拥有世界观 (Coherent Worldview): **断言** - Agent 的回应和行为背后，体现了一个连贯的、非矛盾的知识与信念体系（世界观）。
+    * `4`: 身份演变 (Evolving Identity): **断言** - Agent 的人格和世界观**能够**记录关键的交互“经历”，并在后续对话中引用这些经历，从而表现出随时间成长的连-贯性。
+
+#### `transparency` (透明度)
+* **类型**: `Integer (0-4)`
+* **描述**: Agent系统被设计的可解释性水平。
+* **值定义 (能力断言等级)**:
+    * `0`: 不透明 (Opaque)
+    * `1`: 可追溯 (Traceable): **断言** - 对任何输出，系统**必须能够**提供导致该输出的关键决策节点和调用的工具日志。
+    * `2`: 简化解释 (Simplified Explanation): **断言** - 系统**能够**用自然语言，以简化的方式解释其做出某个决策的主要原因。
+    * `3`: 详细解释 (Detailed Explanation): **断言** - 系统**能够**以自然语言详细描述其完整的思考链，包括被放弃的假设和选择特定工具的理由。
+    * `4`: 反事实解释 (Counterfactual Explanation): **断言** - 系统**能够**回答“为什么不选择X？”这类问题，解释其放弃其他可能选项的原因。
 ---
 
 ## 🚀 Agent基因序列应用实例
