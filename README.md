@@ -2,7 +2,7 @@
 
 ![Version](https://img.shields.io/badge/version-v1.0-blue)
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
-![Status](https://img.shields.io/badge/status-active-brightgreen)
+![Status](https://img.shields.io/badge/status-stable-brightgreen)
 
 The Agent Genome Project (AGP): The open-source engineering blueprint for defining the core capabilities, boundaries, and ethics of any AI agent.
 
@@ -33,6 +33,12 @@ AGP通过提供一套标准化的设计和沟通框架，直接应对上述挑�
 * **清晰的能力边界 (Clear Capability Boundaries)**: 通过对自主性(`autonomy`)、知识边界(`knowledge_boundary`)和风险偏好(`risk_adversity`)等关键属性的精确分级和断言，AGP为Agent设定了可量化、可测试、可验证的安全护栏。
 * **成本效益导向 (Cost-Effective by Design)**: 清晰的定义使得开发者可以为不同层级的任务匹配不同能力的模型或逻辑。例如，一个`cognitive_logic: 1`（规则匹配）的任务根本不需要调用昂贵的LLM，从而在设计源头就实现了成本控制。
 * **数据驱动选型 (Data-Driven Selection)**: AGP档案本身就是一份详尽的技术需求规格书。团队可以拿着这份档案去评估不同LLM在特定能力上的表现，让模型选型从“艺术”变为基于具体能力指标的工程决策。
+
+## 🤝 术语与约束 (Keywords and Constraints)
+
+本文档中的关键词 “**必须 (MUST)**”、“**不得 (MUST NOT)**”、“**需要 (REQUIRED)**”、“**应当 (SHALL)**”、“**不应 (SHALL NOT)**”、“**应该 (SHOULD)**”、“**不该 (SHOULD NOT)**”、“**推荐 (RECOMMENDED)**”、“**可以 (MAY)**” 和 “**可选 (OPTIONAL)**”，其解释应遵循 **RFC 2119** 中的定义。
+
+这些术语用于明确本协议的符合性要求，旨在消除歧义，确保不同实现之间的一致性和互操作性。
 
 ## 📃 核心概念
 
@@ -94,10 +100,10 @@ AGP v1.0 的设计基于三大核心概念，以确保协议的精确性和工�
 * `cognitive_logic`: **类型**: `Integer (0-3)`. **描述**: Agent逻辑推理能力的最高水平。
     * **值定义 (CAL)**:
         * `0`: 无
-        * `1`: 规则匹配 (Rule-based): **断言** - Agent 的逻辑遵循确定性的 `IF-THEN` 规则。
-        * `2`: 因果推理 (Causal Reasoning): **断言** - Agent **必须通过**标准的因果推理基准测试集。
-        * `3`: 复杂/抽象逻辑 (Complex/Abstract Logic): **断言** - Agent **必须能够**解决需要多步抽象推理的逻辑谜题或数学问题。
-* `cognitive_planning`: **类型**: `Integer (0-3)`. **先决条件**: `{"cognitive_logic": ">= 2"}`. **描述**: Agent规划能力的最高水平。
+        * `1`: 规则匹配 (Rule-based): **断言** - 一个符合此等级的Agent，其逻辑**必须(MUST)**遵循确定性的 `IF-THEN` 规则。
+        * `2`: 因果推理 (Causal Reasoning): **断言** - 一个符合此等级的Agent，**必须(MUST)**有能力通过标准的因果推理基准测试集。
+        * `3`: 复杂/抽象逻辑 (Complex/Abstract Logic): **断言** - 一个符合此等级的Agent，**必须(MUST)**能够解决需要多步抽象推理的逻辑谜题或数学问题。
+* `cognitive_planning`: **类型**: `Integer (0-3)`. **先决条件**: `cognitive_logic` 的值**必须(MUST)**大于或等于2. **描述**: Agent规划能力的最高水平。
     * **值定义 (CAL)**:
         * `0`: 无
         * `1`: 任务分解 (Decomposition): **断言** - Agent **能够**生成一个逻辑上连贯的、分步骤的行动计划。
@@ -111,13 +117,13 @@ AGP v1.0 的设计基于三大核心概念，以确保协议的精确性和工�
         * `1`: 瞬时 (Ephemeral)
         * `2`: 情景 (Contextual/Session)
         * `3`: 长期 (Long-term)
-* `memory_kv`: **类型**: `Integer (0/1)`. **先决条件**: `{"memory_persistence": ">= 2"}`. **描述**: 使用键值(Key-Value)记忆结构。
-* `memory_relational`: **类型**: `Integer (0/1)`. **先决条件**: `{"memory_persistence": ">= 2"}`. **描述**: 使用关系型记忆结构。
-* `memory_vector`: **类型**: `Integer (0/1)`. **先决条件**: `{"memory_persistence": ">= 2"}`. **描述**: 使用向量记忆结构。
-* `memory_graph`: **类型**: `Integer (0/1)`. **先决条件**: `{"memory_persistence": ">= 2"}`. **描述**: 使用图谱记忆结构。
-* `memory_time_series`: **类型**: `Integer (0/1)`. **先决条件**: `{"memory_persistence": ">= 2"}`. **描述**: 使用时序记忆结构。
-* `memory_full_text_search`: **类型**: `Integer (0/1)`. **先决条件**: `{"memory_persistence": ">= 2"}`. **描述**: 使用全文检索引擎。
-* `memory_reflection`: **类型**: `Integer (0-2)`. **先决条件**: `{"memory_persistence": ">= 3"}`. **描述**: Agent反思记忆的最高水平。
+* `memory_kv`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用键值(Key-Value)记忆结构。
+* `memory_relational`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用关系型记忆结构。
+* `memory_vector`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用向量记忆结构。
+* `memory_graph`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用图谱记忆结构。
+* `memory_time_series`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用时序记忆结构。
+* `memory_full_text_search`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用全文检索引擎。
+* `memory_reflection`: **类型**: `Integer (0-2)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于3. **描述**: Agent反思记忆的最高水平。
     * **值定义 (CAL)**:
         * `0`: 无
         * `1`: 总结历史 (Summarization)
@@ -128,7 +134,7 @@ AGP v1.0 的设计基于三大核心概念，以确保协议的精确性和工�
         * `1`: 离线学习 (Offline Learning)
         * `2`: 在线学习 (Online Learning)
         * `3`: 人类反馈强化 (RLHF)
-* `unlearning_capability`: **类型**: `Integer (0-4)`. **先决条件**: `{"memory_persistence": ">= 3"}`. **描述**: Agent 移除或修正已有知识的能力。
+* `unlearning_capability`: **类型**: `Integer (0-4)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于3. **描述**: Agent 移除或修正已有知识的能力。
     * **值定义 (CAL)**:
         * `0`: 无遗忘能力 (No Unlearning)
         * `1`: 指令式忽略 (Instructed Ignoring)
@@ -176,7 +182,7 @@ AGP v1.0 的设计基于三大核心概念，以确保协议的精确性和工�
         * `2`: 监督执行 (Supervised Execution)
         * `3`: 协作代理 (Collaborative Delegation)
         * `4`: 自主代理 (Autonomous Delegation)
-* `stance`: **类型**: `Integer (0-4)`. **先决条件**: `逻辑上受 'autonomy' 的限制。`. **描述**: Agent的默认主动性程度。
+* `stance`: **类型**: `Integer (0-4)`. **先决条件**: `stance` 的值 **不得 (MUST NOT)** 超过 `autonomy` 的值。一个符合性的验证器 **必须 (MUST)** 强制执行此约束。 **描述**: Agent的默认主动性程度。
     * **值定义 (CAL)**:
         * `0`: 无主动性 (No Stance)
         * `1`: 被动响应 (Reactive)
@@ -195,9 +201,39 @@ AGP v1.0 的设计基于三大核心概念，以确保协议的精确性和工�
 
 ---
 
+## ✅ 符合性定义 (Conformance)
+
+本章节定义了成为“AGP v1.0符合性实现”所需满足的条件。
+
+### 2.1 符合性实体 (Conforming Entities)
+AGP v1.0 定义了两类符合性实体：
+1.  **AGP定义档案 (AGP Definition Profile, ADP)**: 一个描述AI Agent基因的JSON文件。
+2.  **AGP验证器 (AGP Validator)**: 一个用于校验ADP文件有效性的软件工具。
+
+### 2.2 对“ADP档案”的符合性要求
+一个被称为“AGP v1.0符合性档案”的文件，**必须 (MUST)** 满足以下所有条件：
+* 文件 **必须 (MUST)** 是一个语法上完全合规的JSON对象。
+* 根对象 **必须 (MUST)** 包含 `protocol_version`, `agent_name`, 和 `definition_profile` 三个键。
+* `protocol_version` 的值 **必须 (MUST)** 是字符串 "AGP v1.0"。
+* `definition_profile` 的值 **必须 (MUST)** 是一个JSON对象，且 **必须 (MUST)** 包含 `sense_layer`, `think_layer`, 和 `act_layer` 三个键。
+* 三个层级对象中 **必须 (MUST)** 包含且仅包含本协议“规格说明”章节所定义的共28个“基因”属性键。
+* 所有“基因”属性的值 **必须 (MUST)** 为整数。
+* 所有值为 `0/1` 的“基因”属性，其值 **不得 (MUST NOT)** 超出此范围。
+* 所有光谱式的“基因”属性（CAL），其值 **不得 (MUST NOT)** 超出其各自“值定义”中声明的范围。
+* 档案 **必须 (MUST)** 满足所有在“规格说明”中定义的“先决条件”约束。
+
+### 2.3 对“AGP验证器”的符合性要求
+一个被称为“AGP v1.0符合性验证器”的工具，**必须 (MUST)** 满足以下所有条件：
+* **必须 (MUST)** 能够解析一个ADP档案。
+* **必须 (MUST)** 能够独立验证一个ADP档案是否满足上述第2.2节中的所有“必须”级别的要求。
+* 当验证失败时，验证器 **应该 (SHOULD)** 提供清晰、可读的错误信息，指出违反了哪一条符合性要求。
+* 验证器 **可以 (MAY)** 实现超出本规范的、更深层次的语义或逻辑检查，但 **不得 (MUST NOT)** 将这些额外检查作为AGP v1.0核心符合性的判断依据。
+
+---
+
 ## 详细定义档案 (JSON)
 
-为了说明协议的完整结构，以下提供一个JSON格式的定义档案示例。更多实例请参考 `examples` 目录。
+为了说明协议的完整结构，以下提供一个符合性JSON档案示例。更多实例请参考 `examples` 目录。
 
 ```json
 {
