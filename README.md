@@ -1,8 +1,8 @@
-# Agent基因组计划 (AGP) v1.0
+# Agent基因组计划 (AGP) v1.1
 
-![Version](https://img.shields.io/badge/version-v1.0-blue)
+![Version](https://img.shields.io/badge/version-v1.1-blue)
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
-![Status](https://img.shields.io/badge/status-stable-brightgreen)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
 
 The Agent Genome Project (AGP): The open-source engineering blueprint for defining the core capabilities, boundaries, and ethics of any AI agent.
 
@@ -34,18 +34,18 @@ AGP通过提供一套标准化的设计和沟通框架，直接应对上述挑�
 * **成本效益导向 (Cost-Effective by Design)**: 清晰的定义使得开发者可以为不同层级的任务匹配不同能力的模型或逻辑。例如，一个`cognitive_logic: 1`（规则匹配）的任务根本不需要调用昂贵的LLM，从而在设计源头就实现了成本控制。
 * **数据驱动选型 (Data-Driven Selection)**: AGP档案本身就是一份详尽的技术需求规格书。团队可以拿着这份档案去评估不同LLM在特定能力上的表现，让模型选型从“艺术”变为基于具体能力指标的工程决策。
 
-## 🤝 术语与约束 (Keywords and Constraints)
+## 术语与约束 (Keywords and Constraints)
 
 本文档中的关键词 “**必须 (MUST)**”、“**不得 (MUST NOT)**”、“**需要 (REQUIRED)**”、“**应当 (SHALL)**”、“**不应 (SHALL NOT)**”、“**应该 (SHOULD)**”、“**不该 (SHOULD NOT)**”、“**推荐 (RECOMMENDED)**”、“**可以 (MAY)**” 和 “**可选 (OPTIONAL)**”，其解释应遵循 **RFC 2119** 中的定义。
 
 这些术语用于明确本协议的符合性要求，旨在消除歧义，确保不同实现之间的一致性和互操作性。
 
-## 📃 核心概念
+## 核心概念
 
-AGP v1.0 的设计基于三大核心概念，以确保协议的精确性和工程实用性：
+AGP v1.1 的设计基于三大核心概念，以确保协议的精确性和工程实用性：
 
 ### 1. “感知-认知-行动”三层架构 (Sense-Think-Act Three-Layer Architecture)
-为了最大限度地降低认知门槛，v1.0版本将Agent的所有能力重构为符合人类直觉的**“感知-认知-行动”**三层模型。这个经典框架使得协议的结构极其清晰和易于理解。
+为了最大限度地降低认知门槛，v1.1版本将Agent的所有能力重构为符合人类直觉的**“感知-认知-行动”**三层模型。这个经典框架使得协议的结构极其清晰和易于理解。
 
 * **第一层：感知层 (Sense Layer)**: Agent如何从数字或物理世界中接收信息和知识。
 * **第二层：认知层 (Think Layer)**: Agent的“中央处理器”，它如何处理信息、进行思考、学习和记忆。
@@ -70,7 +70,7 @@ AGP v1.0 的设计基于三大核心概念，以确保协议的精确性和工�
 
 ---
 
-## 🧬 AGP v1.0 规格说明
+## 🧬 AGP v1.1 规格说明
 
 一个Agent的定义档案(ADP)是一个由28个属性构成的特征向量，分为**“感知-认知-行动”**三个**逻辑层 (Layers)**。
 
@@ -128,12 +128,13 @@ AGP v1.0 的设计基于三大核心概念，以确保协议的精确性和工�
         * `0`: 无
         * `1`: 总结历史 (Summarization)
         * `2`: 形成经验/智慧 (Wisdom Formation)
-* `evolution_mode`: **类型**: `Integer (0-3)`. **描述**: Agent能力演进的主要模式。
+* `evolution_mode`: **类型**: `Integer (0-4)`. **描述**: Agent能力演进的主要模式。
     * **值定义 (CAL)**:
-        * `0`: 静态 (Static)
-        * `1`: 离线学习 (Offline Learning)
-        * `2`: 在线学习 (Online Learning)
-        * `3`: 人类反馈强化 (RLHF)
+        * `0`: 静态 (Static): **断言** - Agent 的能力和知识库在部署后是固定的。
+        * `1`: 离线学习 (Offline Learning): **断言** - Agent 的模型可以通过新数据进行周期性的重新训练和部署。
+        * `2`: 在线学习 (Online Learning): **断言** - Agent 的模型**能够**通过传统的监督式学习，从实时的数据样本流中进行增量式微调。
+        * `3`: 人类反馈强化学习 (RLHF): **断言** - Agent **必须**集成一个从人类主观反馈（如评分、偏好排序）中获取奖励信号以进行策略优化的机制。
+        * `4`: 环境反馈强化学习 (RLEF): **断言** - Agent **必须**集成一个从环境或任务的客观结果（如得分、任务成功率、利润）中获取奖励信号以进行策略优化的机制。
 * `unlearning_capability`: **类型**: `Integer (0-4)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于3. **描述**: Agent 移除或修正已有知识的能力。
     * **值定义 (CAL)**:
         * `0`: 无遗忘能力 (No Unlearning)
@@ -203,18 +204,18 @@ AGP v1.0 的设计基于三大核心概念，以确保协议的精确性和工�
 
 ## ✅ 符合性定义 (Conformance)
 
-本章节定义了成为“AGP v1.0符合性实现”所需满足的条件。
+本章节定义了成为“AGP v1.1符合性实现”所需满足的条件。
 
-### 符合性实体 (Conforming Entities)
-AGP v1.0 定义了两类符合性实体：
+### 2.1 符合性实体 (Conforming Entities)
+AGP v1.1 定义了两类符合性实体：
 1.  **AGP定义档案 (AGP Definition Profile, ADP)**: 一个描述AI Agent基因的JSON文件。
 2.  **AGP验证器 (AGP Validator)**: 一个用于校验ADP文件有效性的软件工具。
 
-### 对“ADP档案”的符合性要求
-一个被称为“AGP v1.0符合性档案”的文件，**必须 (MUST)** 满足以下所有条件：
+### 2.2 对“ADP档案”的符合性要求
+一个被称为“AGP v1.1符合性档案”的文件，**必须 (MUST)** 满足以下所有条件：
 * 文件 **必须 (MUST)** 是一个语法上完全合规的JSON对象。
 * 根对象 **必须 (MUST)** 包含 `protocol_version`, `agent_name`, 和 `definition_profile` 三个键。
-* `protocol_version` 的值 **必须 (MUST)** 是字符串 "AGP v1.0"。
+* `protocol_version` 的值 **必须 (MUST)** 是字符串 "AGP v1.1"。
 * `definition_profile` 的值 **必须 (MUST)** 是一个JSON对象，且 **必须 (MUST)** 包含 `sense_layer`, `think_layer`, 和 `act_layer` 三个键。
 * 三个层级对象中 **必须 (MUST)** 包含且仅包含本协议“规格说明”章节所定义的共28个“基因”属性键。
 * 所有“基因”属性的值 **必须 (MUST)** 为整数。
@@ -222,23 +223,22 @@ AGP v1.0 定义了两类符合性实体：
 * 所有光谱式的“基因”属性（CAL），其值 **不得 (MUST NOT)** 超出其各自“值定义”中声明的范围。
 * 档案 **必须 (MUST)** 满足所有在“规格说明”中定义的“先决条件”约束。
 
-### 对“AGP验证器”的符合性要求
-一个被称为“AGP v1.0符合性验证器”的工具，**必须 (MUST)** 满足以下所有条件：
+### 2.3 对“AGP验证器”的符合性要求
+一个被称为“AGP v1.1符合性验证器”的工具，**必须 (MUST)** 满足以下所有条件：
 * **必须 (MUST)** 能够解析一个ADP档案。
 * **必须 (MUST)** 能够独立验证一个ADP档案是否满足上述第2.2节中的所有“必须”级别的要求。
 * 当验证失败时，验证器 **应该 (SHOULD)** 提供清晰、可读的错误信息，指出违反了哪一条符合性要求。
-* 验证器 **可以 (MAY)** 实现超出本规范的、更深层次的语义或逻辑检查，但 **不得 (MUST NOT)** 将这些额外检查作为AGP v1.0核心符合性的判断依据。
+* 验证器 **可以 (MAY)** 实现超出本规范的、更深层次的语义或逻辑检查，但 **不得 (MUST NOT)** 将这些额外检查作为AGP v1.1核心符合性的判断依据。
 
 ---
 
 ## 详细定义档案 (JSON)
 
 为了说明协议的完整结构，以下提供一个符合性JSON档案示例。更多实例请参考 `examples` 目录。
-以下是一个金融分析师的JSON档案示例，其基因序列为:1100102-323111111112313-110221
 
 ```json
 {
-  "protocol_version": "AGP v1.0",
+  "protocol_version": "AGP v1.1",
   "agent_name": "AI Financial Analyst",
   "definition_profile": {
     "sense_layer": {
