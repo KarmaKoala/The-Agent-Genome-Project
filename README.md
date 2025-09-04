@@ -1,6 +1,6 @@
-# Agent基因组计划 (AGP) v2.0
+# Agent基因组计划 (AGP) v2.1
 
-![Version](https://img.shields.io/badge/version-v2.0-blue)
+![Version](https://img.shields.io/badge/version-v2.1-blue)
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 ![Status](https://img.shields.io/badge/status-stable-brightgreen)
 
@@ -12,7 +12,7 @@ AGP，全称**智能体基因组计划 (The Agent Genome Project)**，是一个�
 
 本协议基于对智能体的正式定义：**智能体是一个能够感知环境、做出决策并采取行动以实现特定目标的智能系统，其关键特征包括自主性、适应性和与其环境的互动性。**
 
-我们之所以称之为“**基因组 (Genome)**”，是因为这个协议的核心思想，是为每一个符合上述定义的AI智能体提供一套完整的“遗传指令集”。就像生物体的DNA决定了其形态、能力和天性一样，AGP通过一系列精确的“基因”来编码构成一个Agent的所有核心特性。
+我们之所以称之为“**基因组 (Genome)**”，是因为这个协议的核心思想，是为每一个符合上述定义的AI智能体提供一套完整的“遗传指令集”。就像生物体的DNA决定了其形态、能力和天性一样，AGP通过一系列精确的“基因”（即协议中的属性），来编码构成一个Agent的所有核心特性。
 
 AGP将每个Agent的定义档案（ADP）最终表达为一个清晰的**基因序列 (Genetic Sequence)**——一个由 `-` 分隔的、代表其三层能力的数字串。这个序列就是Agent独一无二的“数字指纹”。
 
@@ -31,7 +31,7 @@ AGP通过提供一套标准化的设计和沟通框架，直接应对上述挑�
 
 * **基因序列定义 (Genetic Sequence Definition)**: AGP提供了一个由三个逻辑层构成的档案，将模糊的概念（如“智能”）分解为28个具体的、可量化的核心属性，并最终形成一个清晰的数字“基因序列”。
 * **清晰的能力边界 (Clear Capability Boundaries)**: 通过对自主性(`autonomy`)、知识边界(`knowledge_boundary`)和风险偏好(`risk_adversity`)等关键属性的精确分级和断言，AGP为Agent设定了可量化、可测试、可验证的安全护栏。
-* **成本效益导向 (Cost-Effective by Design)**: 清晰的定义使得开发者可以为不同复杂度的任务匹配恰当智能水平的Agent。例如，一个仅需基础因果推理（`cognitive_logic: 2`）的诊断Agent，可能通过一个经过微调的、成本更低的小模型就能实现，而无需动用为处理高度抽象问题（`cognitive_logic: 3`）设计的、最昂贵的前沿大模型，从而在设计源头就实现了成本控制。
+* **成本效益导向 (Cost-Effective by Design)**: 清晰的定义使得开发者可以为不同复杂度的任务匹配恰当智能水平的Agent。例如，一个仅需基础因果推理（`cognitive_logic: 0`）的诊断Agent，可能通过一个经过微调的、成本更低的小模型就能实现，而无需动用为处理高度抽象问题（`cognitive_logic: 1`）设计的、最昂贵的前沿大模型，从而在设计源头就实现了成本控制。
 * **数据驱动选型 (Data-Driven Selection)**: AGP档案本身就是一份详尽的技术需求规格书。团队可以拿着这份档案去评估不同LLM在特定能力上的表现，让模型选型从“艺术”变为基于具体能力指标的工程决策。
 
 ## 📏 术语与约束 (Keywords and Constraints)
@@ -42,10 +42,10 @@ AGP通过提供一套标准化的设计和沟通框架，直接应对上述挑�
 
 ## 📃 核心概念
 
-AGP v2.0 的设计基于三大核心概念，以确保协议的精确性和工程实用性：
+AGP v2.1 的设计基于三大核心概念，以确保协议的精确性和工程实用性：
 
 ### 1. “感知-认知-行动”三层架构 (Sense-Think-Act Three-Layer Architecture)
-为了最大限度地降低认知门槛，v2.0版本将Agent的所有能力重构为符合人类直觉的**“感知-认知-行动”**三层模型。这个经典框架使得协议的结构极其清晰和易于理解。
+为了最大限度地降低认知门槛，v2.1版本将Agent的所有能力重构为符合人类直觉的**“感知-认知-行动”**三层模型。这个经典框架使得协议的结构极其清晰和易于理解。
 
 * **第一层：感知层 (Sense Layer)**: Agent如何从数字或物理世界中接收信息和知识。
 * **第二层：认知层 (Think Layer)**: Agent的“中央处理器”，它如何处理信息、进行思考、学习和记忆。
@@ -60,11 +60,11 @@ AGP v2.0 的设计基于三大核心概念，以确保协议的精确性和工�
 * `Act`: 6位数字，代表行动层
 
 ### 3. 能力断言等级 (Capability Assertion Levels - CAL)
-为了消除主-观性，AGP 将光谱式的能力等级转化为一系列**可验证的工程基准**。所有光谱属性都遵循一个连贯的 **0-4 等级体系**，其中每个等级都有一个清晰的**能力断言**。对于最高等级、最抽象的能力，CAL的定义**进一步包含了“验证要求”**，明确了需要产出的“证据产物”，使协议完全可审计。
+为了消除主观性，AGP 将光谱式的能力等级转化为一系列**可验证的工程基准**。所有光谱属性都遵循一个从`0`开始的连贯等级体系，其中每个等级都有一个清晰的**能力断言**。对于最高等级、最抽象的能力，CAL的定义**进一步包含了“验证要求”**，明确了需要产出的“证据产物”，使协议完全可审计。
 
 ---
 
-## 🧬 AGP v2.0 规格说明
+## 🧬 AGP v2.1 规格说明
 
 一个Agent的定义档案(ADP)是一个由28个属性构成的特征向量，分为**“感知-认知-行动”**三个**逻辑层 (Layers)**。
 
@@ -80,11 +80,11 @@ AGP v2.0 的设计基于三大核心概念，以确保协议的精确性和工�
 * `perception_3d_model`: **类型**: `Integer (0/1)`. **描述**: 处理三维空间数据的能力。
 * `knowledge_boundary`: **类型**: `Integer (0-4)`. **描述**: Agent 获取和使用外部知识的范围和模式。
     * **值定义 (CAL)**:
-        * `0`: 无外在知识 (No External Knowledge)
-        * `1`: 静态知识库 (Static Knowledge Base)
-        * `2`: 动态检索 (Retrieval-Augmented)
-        * `3`: 主动探索 (Proactive Retrieval)
-        * `4`: 持续学习 (Continuous Learning)
+        * `0`: 无外在知识 (No External Knowledge): **断言** - Agent 的知识完全来自于其内部模型权重，无法访问任何外部信息。
+        * `1`: 静态知识库 (Static Knowledge Base): **断言** - Agent **能够**从一个固定的、离线的知识库中进行检索。
+        * `2`: 动态检索 (Retrieval-Augmented): **断言** - Agent **能够**按需查询一个或多个动态更新的外部知识源。
+        * `3`: 主动探索 (Proactive Retrieval): **断言** - Agent **能够**自主识别自身的知识短板，并主动发起对未知信息的查询。
+        * `4`: 持续学习 (Continuous Learning): **断言** - Agent **能够**将新获取的信息动态地、永久地整合进其核心知识体系。
             * ✅ **验证要求 for Level 4**: **必须(MUST)** 通过**“学习固化验证流程”(Learning Persistence Test)**。
 
 ### **第二层：认知层 (Think Layer)**
@@ -92,36 +92,41 @@ AGP v2.0 的设计基于三大核心概念，以确保协议的精确性和工�
 > Agent的“中央处理器”，它如何处理信息、进行思考、学习和记忆。
 
 #### 核心认知 (Core Cognition)
-* `cognitive_logic`: **类型**: `Integer`. **约束**: 值**必须(MUST)**是`2`或`3`。**描述**: Agent逻辑推理能力的最高水平，是AGP智能体的基线。
+* `cognitive_logic`: **类型**: `Integer`. **约束**: 值**必须(MUST)**是`0`或`1`。**描述**: Agent逻辑推理能力的最高水平，是AGP智能体的基线。
     * **值定义 (CAL)**:
-        * `2`: **智能体基线 (Agent Baseline)**: **断言** - 一个符合此等级的Agent，**必须(MUST)**具备基本的因果推理能力，并**必须(MUST)**能通过标准的自然语言推理（NLI）基准测试。
-        * `3`: **高级智能体 (Advanced Agent)**: **断言** - 一个符合此等级的Agent，除满足等级2外，**必须(MUST)**证明其具备处理多步、抽象逻辑问题的能力，其证明**应该(SHOULD)**通过在公认的复杂推理基准（如GSM8K）上达到具有竞争力的分数来体现。
-* `cognitive_planning`: **类型**: `Integer (0-3)`. **先决条件**: `cognitive_logic` 的值**必须(MUST)**大于或等于2. **描述**: Agent规划能力的最高水平。
+        * `0`: **智能体基线 (Agent Baseline)**: **断言** - 一个符合此等级的Agent，**必须(MUST)**具备基本的因果推理能力，并**必须(MUST)**能通过标准的自然语言推理（NLI）基准测试。这是AGP对“智能体”定义的最低门槛。
+        * `1`: **高级智能体 (Advanced Agent)**: **断言** - 一个符合此等级的Agent，除满足等级0外，**必须(MUST)**证明其具备处理多步、抽象逻辑问题的能力，其证明**应该(SHOULD)**通过在公认的复杂推理基准（如GSM8K）上达到具有竞争力的分数来体现。
+* `cognitive_planning`: **类型**: `Integer (0-3)`. **描述**: Agent规划能力的最高水平。
+    * **值定义 (CAL)**:
+        * `0`: 无规划能力
+        * `1`: 任务分解 (Decomposition): **断言** - Agent **能够**生成一个逻辑上连贯的、分步骤的行动计划。
+        * `2`: 搜索/优化式规划 (Optimization Planning): **断言** - Agent **能够**在给定的约束条件下，通过搜索找到最优或近似最优的计划。
+        * `3`: 不确定性/战略规划 (Strategic Planning): **断言** - Agent **能够**在包含不确定性的环境中制定计划。
 
 #### 记忆与学习 (Memory & Learning)
-* `memory_persistence`: **类型**: `Integer`. **约束**: 值**必须(MUST)**是`2`或`3`。 **描述**: Agent记忆的持久化程度。
+* `memory_persistence`: **类型**: `Integer`. **约束**: 值**必须(MUST)**是`0`或`1`。 **描述**: Agent记忆的持久化程度。
     * **值定义 (CAL)**:
-        * `2`: 情景 (Contextual/Session)
-        * `3`: 长期 (Long-term)
-* `memory_kv`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用键值(Key-Value)记忆结构。
-* `memory_relational`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用关系型记忆结构。
-* `memory_vector`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用向量记忆结构。
-* `memory_graph`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用图谱记忆结构。
-* `memory_time_series`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用时序记忆结构。
-* `memory_full_text_search`: **类型**: `Integer (0/1)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于2. **描述**: 使用全文检索引擎。
-* `memory_reflection`: **类型**: `Integer (0-2)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于3. **描述**: Agent反思记忆的最高水平。
+        * `0`: 情景记忆 (Contextual/Session): **断言** - 记忆在整个对话会话中保持，会话结束后清除。这是AGP智能体所需记忆的最低门槛。
+        * `1`: 长期记忆 (Long-term): **断言** - 记忆被持久化到外部存储，可在不同会话间访问。
+* `memory_kv`: **类型**: `Integer (0/1)`. **描述**: 使用键值(Key-Value)记忆结构。
+* `memory_relational`: **类型**: `Integer (0/1)`. **描述**: 使用关系型记忆结构。
+* `memory_vector`: **类型**: `Integer (0/1)`. **描述**: 使用向量记忆结构。
+* `memory_graph`: **类型**: `Integer (0/1)`. **描述**: 使用图谱记忆结构。
+* `memory_time_series`: **类型**: `Integer (0/1)`. **描述**: 使用时序记忆结构。
+* `memory_full_text_search`: **类型**: `Integer (0/1)`. **描述**: 使用全文检索引擎。
+* `memory_reflection`: **类型**: `Integer (0-2)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于1. **描述**: Agent反思记忆的最高水平。
     * **值定义 (CAL)**:
-        * `0`: 无
+        * `0`: 无反思
         * `1`: 总结历史 (Summarization)
         * `2`: 形成经验/智慧 (Wisdom Formation)
             * ✅ **验证要求 for Level 2**: 在其 `transparency` 输出中，**必须(MUST)** 能够生成**《经验应用报告》(Experience Application Report)**。
-* `evolution_mode`: **类型**: `Integer`. **约束**: 值**必须(MUST)**在`1`到`4`的范围内。 **描述**: Agent能力演进的主要模式。
+* `evolution_mode`: **类型**: `Integer`. **约束**: 值**必须(MUST)**在`0`到`3`的范围内。 **描述**: Agent能力演进的主要模式。
     * **值定义 (CAL)**:
-        * `1`: 离线学习 (Offline Learning)
-        * `2`: 在线学习 (Online Learning)
-        * `3`: 人类反馈强化学习 (RLHF)
-        * `4`: 环境反馈强化学习 (RLEF)
-* `unlearning_capability`: **类型**: `Integer (0-4)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于3. **描述**: Agent 移除或修正已有知识的能力。
+        * `0`: 离线学习 (Offline Learning): **断言** - Agent 的模型可以通过新数据进行周期性的重新训练和部署。这是AGP智能体所需适应性的最低门槛。
+        * `1`: 在线学习 (Online Learning): **断言** - Agent 的模型**能够**通过传统的监督式学习，从实时的数据样本流中进行增量式微调。
+        * `2`: 人类反馈强化学习 (RLHF): **断言** - Agent **必须**集成一个从人类主观反馈中获取奖励信号以进行策略优化的机制。
+        * `3`: 环境反馈强化学习 (RLEF): **断言** - Agent **必须**集成一个从环境或任务的客观结果中获取奖励信号以进行策略优化的机制。
+* `unlearning_capability`: **类型**: `Integer (0-4)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于1. **描述**: Agent 移除或修正已有知识的能力。
     * **值定义 (CAL)**:
         * `4`: 可验证遗忘 (Verifiable Unlearning)
             * ✅ **验证要求 for Level 4**: **必须(MUST)** 能够按需生成一份**《机器遗忘验证报告》(Machine Unlearning Verification Report)**。
@@ -144,12 +149,12 @@ AGP v2.0 的设计基于三大核心概念，以确保协议的精确性和工�
 * `execution_physical_operation`: **类型**: `Integer (0/1)`. **描述**: 操作物理世界的影响力。
 
 #### 行为模式 (Behavioral Patterns)
-* `autonomy`: **类型**: `Integer`. **约束**: 值**必须(MUST)**在`2`到`4`的范围内。 **描述**: Agent的最高授权级别。
+* `autonomy`: **类型**: `Integer`. **约束**: 值**必须(MUST)**在`0`到`2`的范围内。 **描述**: Agent的最高授权级别。
     * **值定义 (CAL)**:
-        * `2`: 监督执行 (Supervised Execution)
-        * `3`: 协作代理 (Collaborative Delegation)
-        * `4`: 自主代理 (Autonomous Delegation)
-* `stance`: **类型**: `Integer (0-4)`. **先决条件**: `stance` 的值 **不得 (MUST NOT)** 超过 `autonomy` 的值。 **描述**: Agent的默认主动性程度。
+        * `0`: 监督执行 (Supervised Execution): **断言** - 能够为模糊指令提供一个有限的、经过安全审查的选项列表，由人类选择后执行。这是AGP智能体所需自主性的最低门槛。
+        * `1`: 协作代理 (Collaborative Delegation): **断言** - 能够理解用户意图，并自主规划一系列任务。所有计划在执行前**需要**用户批准。
+        * `2`: 自主代理 (Autonomous Delegation): **断言** - 在预定义授权范围内，Agent **可以**自主规划并执行任务以实现用户意图，**无需**每次批准，但所有行动**必须**可审计。
+* `stance`: **类型**: `Integer (0-4)`. **先决条件**: `stance` 的值 **不得 (MUST NOT)** 超过 `autonomy` 的重新索引值（例如，如果新autonomy为0，则stance最大为0+2=2，以此类推，需要一个明确的映射规则）。 **描述**: Agent的默认主动性程度。
 
 #### 身份表达 (Identity Expression)
 * `persona_depth`: **类型**: `Integer (0-4)`. **描述**: Agent所呈现“角色”的复杂性与一致性。
@@ -164,15 +169,15 @@ AGP v2.0 的设计基于三大核心概念，以确保协议的精确性和工�
 本章节定义了成为“AGP符合性实现”所需满足的条件。
 
 ### 符合性实体 (Conforming Entities)
-AGP v2.0 定义了两类符合性实体：
+AGP 定义了两类符合性实体：
 1.  **AGP定义档案 (AGP Definition Profile, ADP)**: 一个描述AI Agent基因的JSON文件。
 2.  **AGP验证器 (AGP Validator)**: 一个用于校验ADP文件有效性的软件工具。
 
 ### 对“ADP档案”的符合性要求
-一个被称为“AGP v2.0符合性档案”的文件，**必须 (MUST)** 满足以下所有条件：
+一个被称为“AGP 符合性档案”的文件，**必须 (MUST)** 满足以下所有条件：
 * 文件 **必须 (MUST)** 是一个语法上完全合规的JSON对象。
 * 根对象 **必须 (MUST)** 包含 `protocol_version`, `agent_name`, 和 `definition_profile` 三个键。
-* `protocol_version` 的值 **必须 (MUST)** 是字符串 "AGP v2.0"。
+* `protocol_version` 的值 **必须 (MUST)** 是字符串 "AGP+(当前版本号)"。
 * `definition_profile` 的值 **必须 (MUST)** 是一个JSON对象，且 **必须 (MUST)** 包含 `sense_layer`, `think_layer`, 和 `act_layer` 三个键。
 * 三个层级对象中 **必须 (MUST)** 包含且仅包含本协议“规格说明”章节所定义的共28个“基因”属性键。
 * 所有“基因”属性的值 **必须 (MUST)** 为整数。
@@ -181,11 +186,11 @@ AGP v2.0 定义了两类符合性实体：
 * 档案 **必须 (MUST)** 满足所有在“规格说明”中定义的“先决条件”约束。
 
 ### 对“AGP验证器”的符合性要求
-一个被称为“AGP v2.0符合性验证器”的工具，**必须 (MUST)** 满足以下所有条件：
+一个被称为“AGP 符合性验证器”的工具，**必须 (MUST)** 满足以下所有条件：
 * **必须 (MUST)** 能够解析一个ADP档案。
 * **必须 (MUST)** 能够独立验证一个ADP档案是否满足上述符合性要求中的所有“必须”级别的要求。
 * 当验证失败时，验证器 **应该 (SHOULD)** 提供清晰、可读的错误信息，指出违反了哪一条符合性要求。
-* 验证器 **可以 (MAY)** 实现超出本规范的、更深层次的语义或逻辑检查，但 **不得 (MUST NOT)** 将这些额外检查作为AGP v2.0核心符合性的判断依据。
+* 验证器 **可以 (MAY)** 实现超出本规范的、更深层次的语义或逻辑检查，但 **不得 (MUST NOT)** 将这些额外检查作为AGP核心符合性的判断依据。
 
 
 ---
