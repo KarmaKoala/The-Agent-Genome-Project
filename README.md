@@ -201,7 +201,7 @@ AGP 定义了两类符合性实体：
 
 ```json
 {
-  "protocol_version": "AGP v2.0",
+  "protocol_version": "AGP v2.1",
   "agent_name": "AI Financial Analyst",
   "definition_profile": {
     "sense_layer": {
@@ -214,9 +214,9 @@ AGP 定义了两类符合性实体：
       "knowledge_boundary": 2
     },
     "think_layer": {
-      "cognitive_logic": 3,
+      "cognitive_logic": 1,
       "cognitive_planning": 2,
-      "memory_persistence": 3,
+      "memory_persistence": 1,
       "memory_kv": 1,
       "memory_relational": 1,
       "memory_vector": 1,
@@ -224,7 +224,7 @@ AGP 定义了两类符合性实体：
       "memory_time_series": 1,
       "memory_full_text_search": 1,
       "memory_reflection": 1,
-      "evolution_mode": 1,
+      "evolution_mode": 0,
       "unlearning_capability": 2,
       "alignment": 3,
       "risk_adversity": 1,
@@ -234,8 +234,8 @@ AGP 定义了两类符合性实体：
       "execution_info_generation": 1,
       "execution_digital_operation": 1,
       "execution_physical_operation": 0,
-      "autonomy": 2,
-      "stance": 2,
+      "autonomy": 0,
+      "stance": 0,
       "persona_depth": 1
     }
   }
