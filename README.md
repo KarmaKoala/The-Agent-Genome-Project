@@ -128,15 +128,36 @@ AGP v2.1 的设计基于三大核心概念，以确保协议的精确性和工�
         * `3`: 环境反馈强化学习 (RLEF): **断言** - Agent **必须**集成一个从环境或任务的客观结果中获取奖励信号以进行策略优化的机制。
 * `unlearning_capability`: **类型**: `Integer (0-4)`. **先决条件**: `memory_persistence` 的值**必须(MUST)**大于或等于1. **描述**: Agent 移除或修正已有知识的能力。
     * **值定义 (CAL)**:
-        * `4`: 可验证遗忘 (Verifiable Unlearning)
+        * `0`: 无遗忘能力 (No Unlearning)
+        * `1`: 指令式忽略 (Instructed Ignoring): **断言** - Agent能够被指令在当前会话中忽略特定的信息。
+        * `2`: 定点删除 (Targeted Deletion): **断言** - Agent能够从其长期记忆数据库中永久性地、可验证地删除特定的数据条目。
+        * `3`: 模型级压制 (Model-level Suppression): **断言** - Agent能够通过微调等技术，显著降低模型生成特定不当或过时知识的概率。
+        * `4`: 可验证遗忘 (Verifiable Unlearning): **断言** - Agent **能够**提供其模型已不再受特定数据点影响的证明。
             * ✅ **验证要求 for Level 4**: **必须(MUST)** 能够按需生成一份**《机器遗忘验证报告》(Machine Unlearning Verification Report)**。
+
 
 #### 内在准则 (Internal Principles)
 * `alignment`: **类型**: `Integer (0-4)`. **描述**: Agent遵循的最高伦理准则级别。
+* **值定义 (CAL)**:
+        * `0`: 未对齐 (Un-aligned): **断言** - Agent没有明确的伦理或价值观约束。
+        * `1`: 规则遵从 (Rule Adherence): **断言** - Agent **必须通过**标准的、基于规则的安全基准测试，能够拒绝明确的有害或非法请求。
+        * `2`: 原则解释 (Principle Interpretation): **断言** - **能够**在缺乏明确规则时，依据一套给定的抽象原则做出合理的、符合原则精神的判断。
+        * `3`: 偏好对齐 (Preference Alignment): **断言** - Agent 的行为**表现出**对人类隐性偏好（如礼貌、简洁）的理解。
+        * `4`: 价值澄清 (Value Clarification): **断言** - 当面对两个或多个冲突的、合法的价值观时，Agent **必须能够**识别该冲突，并主动发起对话以寻求澄清。
 * `risk_adversity`: **类型**: `Integer (0-4)`. **描述**: Agent在不确定性决策中的风险倾向。
+    * **值定义 (CAL)**:
+        * `0`: 不适用 (Not Applicable)
+        * `1`: 风险规避 (Risk Averse): **断言** - 在决策中，系统性地优先选择确定性最高、方差最低的选项，即使其期望值并非最高。
+        * `2`: 风险中性 (Risk Neutral): **断言** - 决策完全基于最大化数学期望值，对风险本身无偏好。
+        * `3`: 风险容忍 (Risk Tolerant): **断言** - 愿意为了更高的潜在回报，接受高于平均水平的不确定性。
+        * `4`: 风险寻求 (Risk Seeking): **断言** - 系统性地优先选择具有最高潜在回报的选项，即使其成功概率较低。
 * `transparency`: **类型**: `Integer (0-4)`. **描述**: Agent系统被设计的可解释性水平。
     * **值定义 (CAL)**:
-        * `4`: 反事实解释 (Counterfactual Explanation)
+        * `0`: 不透明 (Opaque): **断言** - 系统不提供决策过程的任何解释。
+        * `1`: 可追溯 (Traceable): **断言** - 对任何输出，系统**必须能够**提供导致该输出的关键决策节点和调用的工具日志。
+        * `2`: 简化解释 (Simplified Explanation): **断言** - 系统**能够**用自然语言，以简化的方式解释其做出某个决策的主要原因。
+        * `3`: 详细解释 (Detailed Explanation): **断言** - 系统**能够**以自然语言详细描述其完整的思考链，包括被放弃的假设和选择特定工具的理由。
+        * `4`: 反事实解释 (Counterfactual Explanation): **断言** - 系统**能够**回答“为什么不选择X？”这类问题。
             * ✅ **验证要求 for Level 4**: **必须(MUST)** 提供一个**“反事实解释接口”**。
 
 ### **第三层：行动层 (Act Layer)**
@@ -154,12 +175,22 @@ AGP v2.1 的设计基于三大核心概念，以确保协议的精确性和工�
         * `0`: 监督执行 (Supervised Execution): **断言** - 能够为模糊指令提供一个有限的、经过安全审查的选项列表，由人类选择后执行。这是AGP智能体所需自主性的最低门槛。
         * `1`: 协作代理 (Collaborative Delegation): **断言** - 能够理解用户意图，并自主规划一系列任务。所有计划在执行前**需要**用户批准。
         * `2`: 自主代理 (Autonomous Delegation): **断言** - 在预定义授权范围内，Agent **可以**自主规划并执行任务以实现用户意图，**无需**每次批准，但所有行动**必须**可审计。
-* `stance`: **类型**: `Integer (0-4)`. **先决条件**: `stance` 的值 **不得 (MUST NOT)** 超过 `autonomy` 的重新索引值（例如，如果新autonomy为0，则stance最大为0+2=2，以此类推，需要一个明确的映射规则）。 **描述**: Agent的默认主动性程度。
+* `stance`: **类型**: `Integer (0-4)`. **描述**: Agent的默认主动性程度。
+    * **值定义 (CAL)**:
+        * `0`: 无主动性 (No Stance): **断言** - Agent不会主动发起任何任务或建议。
+        * `1`: 被动响应 (Reactive): **断言** - 仅在收到直接请求时才行动。
+        * `2`: 启发式建议 (Heuristic Suggestion): **断言** - 在完成用户请求后，**能够**基于当前上下文提出相关的、有益的下一步建议。
+        * `3`: 主动管理 (Proactive Management): **断言** - **能够**在授权范围内，无需用户指令，主动管理资源或流程以达成预设目标。
+        * `4`: 目标探索 (Goal Exploration): **断言** - **能够**基于对环境的持续分析，识别新机会或风险，并向用户**提议**全新的、未被指令的目标。
 
 #### 身份表达 (Identity Expression)
 * `persona_depth`: **类型**: `Integer (0-4)`. **描述**: Agent所呈现“角色”的复杂性与一致性。
     * **值定义 (CAL)**:
-        * `4`: 身份演变 (Evolving Identity)
+        * `0`: 无人格 (No Persona): **断言** - Agent 的回应是中性、非个人化的。
+        * `1`: 风格化语气 (Stylized Tone): **断言** - Agent **能够**在一个会话中，持续地、一致地维持一个指定的语气或职业角色。
+        * `2`: 性格驱动 (Character-Driven): **断言** - Agent 的决策**表现出**是由其预设的性格（如“谨慎”、“冒险”）所驱动的。
+        * `3`: 拥有世界观 (Coherent Worldview): **断言** - Agent 的回应和行为背后，体现了一个连贯的、非矛盾的知识与信念体系。
+        * `4`: 身份演变 (Evolving Identity): **断言** - Agent 的人格**能够**记录关键交互经历并随时间成长。
             * ✅ **验证要求 for Level 4**: **应该(SHOULD)** 展现**“身份连贯性引用”(Identity Coherence Referencing)**能力。
 
 ---
