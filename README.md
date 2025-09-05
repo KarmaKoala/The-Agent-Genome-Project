@@ -23,7 +23,7 @@ AGP将每个Agent的定义档案（ADP）最终表达为一个清晰的**基因�
 * **定义模糊 (Vague Definitions)**: “智能助理”、“任务机器人”等标签过于宽泛，团队内部对于Agent的核心特性缺乏统一、精确的认知，导致沟通不畅和需求错位。
 * **边界失控 (Uncontrolled Boundaries)**: 开发者很难清晰地界定Agent的行动范围和决策权限。这不仅带来安全风险，也使得Agent的行为难以预测和管理。
 * **成本高昂 (High Costs)**: Agent定义不明确，导致底层大语言模型（LLM）需要执行大量不必要的“思考”，这会急剧增加Token消耗，造成严重的成本超支和性能下降。
-* **选型困难 (Difficult Model Selection)**: 面对GPT-4o, Gemini 1.5, Claude 3等众多模型，如何选择最适合当前Agent需求的、兼具性能和成本效益的底层模型，是一个复杂且重要的决策。
+* **选型困难 (Difficult Model Selection)**: 面对GPT, Gemini, Claude等众多模型，如何选择最适合当前Agent需求的、兼具性能和成本效益的底层模型，是一个复杂且重要的决策。
 
 ## 💡 我们的解决方案 (The Solution)
 
@@ -73,7 +73,7 @@ AGP v2.1 的设计基于三大核心概念，以确保协议的精确性和工�
 > Agent如何从数字或物理世界中接收信息和知识。
 
 * `perception_text`: **类型**: `Integer (0/1)`. **描述**: 处理非结构化或半结构化文本的能力。1代表有，0代表无。
-* `perception_image`: **类型**: `Integer (0/1)`. **描述**: 处理光栅图像的能力。
+* `perception_image`: **类型**: `Integer (0/1)`. **描述**: 处理图像的能力。
 * `perception_audio`: **类型**: `Integer (0/1)`. **描述**: 处理音频数据的能力。
 * `perception_video`: **类型**: `Integer (0/1)`. **描述**: 处理视频流或文件的能力。
 * `perception_tabular`: **类型**: `Integer (0/1)`. **描述**: 处理具有行列结构的二维表格数据的能力。
